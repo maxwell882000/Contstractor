@@ -1,0 +1,72 @@
+.transition-show {
+    visibility: visible !important;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.remove-circle {
+    display: none !important;
+}
+.remove-item {
+    display: none;
+}
+
+.transition-hide {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.carousel-control-prev:hover, .carousel-control-prev-icon:hover {
+    transition: visibility 0s, opacity 0.5s linear;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+    background: transparent no-repeat center center;
+    background-size: 40px 40px;
+}
+
+.carousel-control-next:hover, .carousel-control-next-icon:hover {
+    transition: visibility 0s, opacity 0.5s linear;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+    background: transparent no-repeat center center;
+    background-size: 40px 40px;
+}
+
+.carousel-control-next, .carousel-control-prev {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    z-index: 1;
+    justify-content: center;
+    width: 15%;
+    color: #fff;
+    text-align: center;
+    opacity: 0.5;
+}
+
+.carousel-control-next {
+    right: 0;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+}
+@media (max-width: 767px) {
+    .carousel-control-prev:hover, .carousel-control-prev-icon:hover {
+        background-image: none !important;
+    }
+
+    .carousel-control-next:hover, .carousel-control-next-icon:hover {
+        background-image:none !important;
+    }
+
+}

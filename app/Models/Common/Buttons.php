@@ -2,12 +2,13 @@
 
 namespace App\Models\Common;
 
+use App\Models\CustomModel\ModelWithTranslate;
+use App\TraitDirectory\LanguageCheckTrade;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Buttons extends Model
+class Buttons extends ModelWithTranslate
 {
-    use HasFactory;
+    use HasFactory, LanguageCheckTrade;
 
     public $timestamps = false;
     protected $fillable = [
@@ -19,11 +20,4 @@ class Buttons extends Model
         "name^en"
     ];
 
-    public function __get($key)
-    {
-        if ($this->checkItIsTranslatable($key)) {
-            return $this[$this->translate($key)];
-        }
-        return parent::__get($key);
-    }
 }

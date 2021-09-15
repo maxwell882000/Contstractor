@@ -16,11 +16,11 @@ class CreateIconsTable extends Migration
     {
         Schema::create('icons', function (Blueprint $table) {
             $table->id();
+            $table->string("icon");
             $table->string("icon_type");
             $table->bigInteger("icon_id");
         });
 
-        DB::statement("ALTER TABLE icons ADD icon MEDIUMBLOB");
     }
 
     /**

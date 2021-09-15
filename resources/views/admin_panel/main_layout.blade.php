@@ -67,6 +67,13 @@
             parent.find("#show_text_when_uploaded").val("Загружено");
         });
     });
+    $("#icon-upload").click(function (){
+        $("#icon").trigger("click");
+        $("#icon").on("change",function (){
+            let parent = $(this).parent();
+            parent.find("#show_text_when_uploaded_icon").val("Загружено");
+        });
+    });
 </script>
 <!-- End plugin js_admin for this page -->
 </body>

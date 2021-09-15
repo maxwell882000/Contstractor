@@ -1,3 +1,4 @@
+<input style="display: none" name="button" value="1"/>
 <div class="form-group">
     <label for="exampleInputName1">Название кнопки RU</label>
     <input type="text" name="name^ru" class="form-control" id="exampleInputName1" value="{{$button["name^ru"]??""}}"

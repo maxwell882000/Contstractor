@@ -19,7 +19,7 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.home.banner_show_list"))1 @else 0 @endif" href="{{route("admin.home.banner_show_list")}}">Остальные
                             Баннеры</a></li>
-                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.home.welcome_home_show"))1 @else 0 @endif" href="{{route("admin.home.welcome_home_show")}}">Приветствие</a>
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.home.welcome_home_show_list"))1 @else 0 @endif" href="{{route("admin.home.welcome_home_show_list")}}">Приветствие</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.home.comments_list"))1 @else 0 @endif" href="{{route("admin.home.comments_list")}}">Комментарии</a>
                     </li>

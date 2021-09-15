@@ -70,36 +70,54 @@ class Banner extends Component
     public function __construct()
     {
         $imageBack = new ImageBannerBackGround("images/main-slider/image-1.jpg");
-        $main_model = \App\Models\Home\MainBanner::all()->last();
+        $main_model = \App\Models\Home\MainBanner::all()->first();
         $this->main_banner = new MainBanner($main_model->title,
             $main_model->mini_header,
             $main_model->button->name, "/contact-us", new ImageBannerBackGround($main_model->image->image));
-        $this->banners = collect([
-            new HomeBanner("images/main-slider/leaf-icon.png",
-                "Some more text will be theere to show  <br/>something",
-                "",
-                "/shop",
-                "See Our Team",
-                '/about-us',
-                $imageBack
-            ),
-            new HomeBanner("images/main-slider/leaf-icon.png",
-                "Some more  <br/>text will be theere to show something",
-                "Buy now",
-                "/shop",
-                "See Our Team",
-                '/about-us',
-                $imageBack
-            ),
-            new HomeBanner("images/main-slider/leaf-icon.png",
-                "THIS WAHT ID NENDED more text will be theere to <br/> show something",
-                "Buy now",
-                "/shop",
-                "See Our Team",
-                '/about-us',
-                $imageBack
-            ),
-        ])->all();
+
+        $home_model = \App\Models\Home\HomeBanner::all();
+        $collection_home = collect([]);
+        foreach ($home_model as $model) {
+            $collection_home->push(new HomeBanner(
+                $model->icon->icon,
+                $model->body,
+                $model->buttonFirst()->name,
+                $model->buttonFirst()->link,
+                $model->buttonSecond()->name,
+                $model->buttonSecond()->link,
+               new ImageBannerBackGround($model->image->image),
+            ));
+        }
+        if ($collection_home) {
+            $this->banners = $collection_home->all();
+        } else {
+            $this->banners = collect([
+                new HomeBanner("images/main-slider/leaf-icon.png",
+                    "Some more text will be theere to show  <br/>something",
+                    "",
+                    "/shop",
+                    "See Our Team",
+                    '/about-us',
+                    $imageBack
+                ),
+                new HomeBanner("images/main-slider/leaf-icon.png",
+                    "Some more  <br/>text will be theere to show something",
+                    "Buy now",
+                    "/shop",
+                    "See Our Team",
+                    '/about-us',
+                    $imageBack
+                ),
+                new HomeBanner("images/main-slider/leaf-icon.png",
+                    "THIS WAHT ID NENDED more text will be theere to <br/> show something",
+                    "Buy now",
+                    "/shop",
+                    "See Our Team",
+                    '/about-us',
+                    $imageBack
+                ),
+            ])->all();
+        }
         $this->setLengthForLoop();
 
     }

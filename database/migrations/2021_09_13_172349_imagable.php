@@ -29,6 +29,6 @@ class Imagable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('imagables');
     }
 }

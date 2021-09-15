@@ -19,27 +19,37 @@ Route::prefix("/home")->name("home.")->group(function () {
     Route::post("/descBeforeCardInput", [Home\DescBeforeCardController::class, "descBeforeCardShow"])
         ->name("desc_before_card_input");
 
-    Route::get("/mainBannerShow", [Home\MainBannerController::class, "mainBannerShow"])
+    Route::get("/mainBannerShow", [Home\MainBannerController::class, "modelShow"])
         ->name("main_banner_show");
 
-    Route::post("/mainBannerShow", [Home\MainBannerController::class, "mainBannerInput"])
+    Route::post("/mainBannerShow", [Home\MainBannerController::class, "modelInput"])
         ->name("main_banner_input");
 
-    Route::get("/bannerShowList", [Home\RestBannersController::class, "bannerShowList"])
+    Route::get("/bannerShowList", [Home\RestBannersController::class, "modelShowList"])
         ->name("banner_show_list");
 
-    Route::get("/bannerShow", [Home\RestBannersController::class, "bannerShow"])
+    Route::get("/bannerShow/{id}", [Home\RestBannersController::class, "modelShowExisting"])
         ->name("banner_show");
+    Route::get("/bannerDelete/{id}", [Home\RestBannersController::class, "modelDelete"])
+        ->name("banner_delete");
 
-    Route::post("/bannerShow", [Home\RestBannersController::class, "bannerInput"])
+    Route::post("/bannerShow", [Home\RestBannersController::class, "modelInput"])
         ->name("banner_input");
 
 
-    Route::get("/welcomeHomeShow", [Home\WelcomeHomeController::class, "welcomeHomeShow"])
+    Route::get("/welcomeHomeShow", [Home\WelcomeHomeController::class, "modelShowList"])
+        ->name("welcome_home_show_list");
+
+    Route::post("/welcomeHomeShow/title", [Home\WelcomeHomeController::class, "modelObjectInput"])
+        ->name("welcome_home_title_input");
+
+    Route::get("/welcomeHomeShow/{id}", [Home\WelcomeHomeController::class, "modelShowExisting"])
         ->name("welcome_home_show");
 
-
-    Route::post("/welcomeHomeShow", [Home\WelcomeHomeController::class, "welcomeHomeInput"])
+    Route::post("/welcomeHomeShow/{id}", [Home\WelcomeHomeController::class, "modelInput"])
         ->name("welcome_home_input");
+
+    Route::get("/welcomeHomeDelete/{id}", [Home\WelcomeHomeController::class, "modelDelete"])
+        ->name("welcome_delete");
 
 });

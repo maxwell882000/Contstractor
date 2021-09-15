@@ -15,13 +15,13 @@ class CreateInfoSectionDescriptionModelsTable extends Migration
     {
         Schema::create('info_section_description_models', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("info_section_model_id");
-            $table->string("header^ru");
-            $table->string("header^en");
-            $table->string("header^uz");
-            $table->text("body^ru");
-            $table->text("body^en");
-            $table->text("body^uz");
+            $table->bigInteger("info_section_model_id")->default(0);
+            $table->string("title^ru")->default("");
+            $table->string("title^en")->default("");
+            $table->string("title^uz")->default("");
+            $table->text("body^ru")->default("");
+            $table->text("body^en")->default("");
+            $table->text("body^uz")->default("");
         });
     }
 

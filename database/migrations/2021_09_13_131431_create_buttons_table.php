@@ -15,10 +15,10 @@ class CreateButtonsTable extends Migration
     {
         Schema::create('buttons', function (Blueprint $table) {
             $table->id();
-            $table->string("name^ru");
-            $table->string("name^en");
-            $table->string("name^uz");
-            $table->string("link");
+            $table->string("name^ru")->default("");
+            $table->string("name^en")->default("");
+            $table->string("name^uz")->default("");
+            $table->string("link")->default("");
             $table->string("button_type");
             $table->bigInteger("button_id");
         });

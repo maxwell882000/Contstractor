@@ -13,15 +13,15 @@ class CreateItemShopsTable extends Migration
      */
     public function up()
     {
-        Schema::create('item_shops', function (Blueprint $table) {
-            $table->id();
-            $table->string("name^ru");
-            $table->string("name^uz");
-            $table->string("name^en");
-            $table->string("price");
-            $table->string("currency");
-            $table->string("image_to_category_id");
-        });
+//        Schema::create('item_shops', function (Blueprint $table) {
+//            $table->id();
+//            $table->string("name^ru");
+//            $table->string("name^uz");
+//            $table->string("name^en");
+//            $table->string("price");
+//            $table->string("currency");
+//            $table->string("image_to_category_id");
+//        });
     }
 
     /**

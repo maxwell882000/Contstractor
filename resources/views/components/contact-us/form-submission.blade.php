@@ -6,7 +6,7 @@
         </div>
 
         <div class="contact-form default-form">
-            <form method="post"  id="contact-form">
+            <form method="post" action="{{route("admin.main_input",0)}}" id="contact-form">
                 @csrf
                 <div class="row clearfix">
                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -29,7 +29,9 @@
                         <textarea name="message" placeholder="{{$form->message}} *" required></textarea>
                     </div>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <div class="text-center"><button type="submit" class="theme-btn btn-style-one">{{$button}} </button></div>
+                        <div class="text-center">
+                            <button type="submit" class="theme-btn btn-style-one">{{$button}} </button>
+                        </div>
                     </div>
                 </div>
             </form>

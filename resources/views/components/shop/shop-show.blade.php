@@ -2,23 +2,6 @@
 <section class="gallery-section">
     <div class="auto-container">
 
-        <!--Sort By-->
-        <div class="items-sorting">
-            <div class="row clearfix">
-                <div class="results-column col-md-9 col-sm-12 col-xs-12">
-                    <div class="text">Showing 1 - 12 of 30 Result</div>
-                </div>
-                <div class="select-column col-md-3 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <select name="sort-by">
-                            <option>Default Sorting</option>
-                            <option>Ascending Order</option>
-                            <option>Descending Order</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="mixitup-gallery">
             <div class="filters text-center">
@@ -40,8 +23,8 @@
                             <div class="image-box">
                                 <figure class="image"><a class="lightbox-image option-btn"
                                                          data-fancybox-group="example-gallery"
-                                                         href="images/gallery/1.jpg" title="Image Title Here"><img
-                                            src="images/gallery/1.jpg" alt=""></a></figure>
+                                                         href="{{$image->image_path}}" title="Image Title Here"><img
+                                            src="{{$image->image_path}}" alt=""></a></figure>
                                 <div class="lower-content">
                                     <h3><a href="shop.html">{{$image->name}}</a></h3>
                                     <div class="price">{{$image->price}} {{$image->currency}}</div>
@@ -53,6 +36,6 @@
             </div>
         </div>
         <!-- Styled Pagination -->
-        @include("helper.pagination")
+        @include("helper.pagination",["paginate"=>$paginate])
     </div>
 </section>

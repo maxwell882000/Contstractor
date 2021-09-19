@@ -16,9 +16,7 @@ class Imagable extends Migration
         Schema::create('imagables', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("image_to_category_id");
-            $table->bigInteger("imagable_id");
-            $table->string("imagable_type");
-
+            $table->bigInteger("category_gallery_id");
         });
     }
 

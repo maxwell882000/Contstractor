@@ -18,7 +18,9 @@ class CreateFormTitlesTable extends Migration
             $table->string("title^ru");
             $table->string("title^uz");
             $table->string("title^en");
-            $table->string("button_name");
+            $table->string("button_name^uz");
+            $table->string("button_name^ru");
+            $table->string("button_name^en");
         });
     }
 

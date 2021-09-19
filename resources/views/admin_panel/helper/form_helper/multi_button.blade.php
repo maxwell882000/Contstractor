@@ -20,8 +20,8 @@
                value="{{$button["name^en"]??""}}">
     </div>
     <div class="form-group">
-        <label for="exampleInputName1">Линк для кнопки</label>
-        <input type="text" name="link_{{$loop->iteration}}" class="form-control" id="exampleInputName1"
+        <label for="link">Линк для кнопки</label>
+        <input  type="text" name="link_{{$loop->iteration}}" class="form-control" id="link"
                value="{{$button["link"]??""}}"
                placeholder="">
     </div>

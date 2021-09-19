@@ -8,10 +8,20 @@ trait LanguageCheckTrade
 {
     public function checkItIsTranslatable($key)
     {
-        return $key == "title" || $key == "mini_header" || $key == "name" || $key == "body";
+        return $key == "title" ||
+            $key == "mini_header" ||
+            $key == "name" ||
+            $key == "body" ||
+            $key == "footer" ||
+            $key == "key_word" ||
+            $key == "header" ||
+            $key == "button_name" ||
+            $key == "profession";
     }
-    public function translate($key){
-        return $key . "^" . Languages::where("is_selected","=",1)->first()->name;
+
+    public function translate($key)
+    {
+        return $key . "^" . session("locale");
     }
 
 }

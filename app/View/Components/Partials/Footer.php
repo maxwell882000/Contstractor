@@ -2,6 +2,15 @@
 
 namespace App\View\Components\Partials;
 
+use App\Http\Controllers\Admin\Common\Footer\FeaturedLinksController;
+use App\InterfaceToFron\InterfaceToFront;
+use App\Models\Common\Footer\FeaturedLinks;
+use App\Models\Common\Footer\FollowUs;
+use App\Models\Common\Footer\InstagramFeed;
+use App\Models\Common\Footer\InstagramImages;
+use App\Models\Common\Footer\KeepInTouch;
+use App\Models\Common\Footer\LeftMostText;
+use App\Models\Common\Information;
 use Illuminate\View\Component;
 
 class Links
@@ -74,6 +83,8 @@ class FooterModel
 
 class Footer extends Component
 {
+    use InterfaceToFront;
+
     /**
      * Create a new component instance.
      *
@@ -90,7 +101,7 @@ class Footer extends Component
 
     private function setLogo()
     {
-        $this->logo = new Logo("images_admin/logo-3.png", "");
+        $this->logo = $this->getLogo();
     }
 
     public function __construct()
@@ -107,60 +118,61 @@ class Footer extends Component
         $image_instagram = $this->getImageInstagram();
         $links = $this->getFeaturedLinks();
         $this->footer = new FooterModel(
-            "Vestibulum facilisis rhoncus tempor. Duis non ipsum volutpat, rhoat nacus nisi sed, pulvinar ex.
-            Etiam sit amet libero consea typoe, convallis odio estibulum urna",
-            "Keep in touch",
+            LeftMostText::all()->first()->body,
+            KeepInTouch::all()->first()->name,
             $information_model,
-            "Instagram Feed",
+            InstagramFeed::all()->first()->name,
             $image_instagram,
-            "Featured Links",
+            FeaturedLinks::all()->first()->name,
             $links,
-            "Follow Us",
+            FollowUs::all()->first()->name,
             $social_links
         );
     }
 
     private function getFeaturedLinks()
     {
-        return collect([
-            new Links("About 1", "/"),
-            new Links("Testimonial 2 ", "521"),
-            new Links("What We Do 3", "125"),
-            new Links("New Products 4" , ""),
-            new Links("New Products 5 ", ""),
-            new Links("What We Do 6", ""),
-        ]);
+        return FeaturedLinks::all()->first()->link->map(function ($item) {
+            return new Links($item->name, $item->link);
+        });
+
     }
 
     private function getInformationModel()
     {
-        return collect([
-            new InformationTable("Address", "", "Some address will be mentioned"),
-            new InformationTable("Phone", "", "124156122121512512"),
-            new InformationTable("Email", "", "shaxa882@gmail.com")
-        ]);
+        return Information::all()->map(function ($item) {
+            return new InformationTable($item->title, $item->icon_data, $item->data);
+        });
+//        return collect([
+//            new InformationTable("Address", "", "Some address will be mentioned"),
+//            new InformationTable("Phone", "", "124156122121512512"),
+//            new InformationTable("Email", "", "shaxa882@gmail.com")
+//        ]);
     }
 
-    private function getSocialLinks()
-    {
-        return collect([
-            new SocialLinks("facebook-official", ""),
-            new SocialLinks("twitter", ""),
-            new SocialLinks("google-plus", ""),
-            new SocialLinks("instagram", ""),
-        ]);
-    }
+//    private function getSocialLinks()
+//    {
+//        return collect([
+//            new SocialLinks("facebook-official", ""),
+//            new SocialLinks("twitter", ""),
+//            new SocialLinks("google-plus", ""),
+//            new SocialLinks("instagram", ""),
+//        ]);
+//    }
 
     private function getImageInstagram()
     {
-        return collect([
-            new ImagesInstagram("images_admin/resource/footer-gallery-1.jpg", "images_admin/resource/blog-image-4.jpg"),
-            new ImagesInstagram("images_admin/resource/footer-gallery-1.jpg", "images_admin/resource/blog-image-4.jpg"),
-            new ImagesInstagram("images_admin/resource/footer-gallery-1.jpg", "images_admin/resource/blog-image-4.jpg"),
-            new ImagesInstagram("images_admin/resource/footer-gallery-1.jpg", "images_admin/resource/blog-image-4.jpg"),
-            new ImagesInstagram("images_admin/resource/footer-gallery-1.jpg", "images_admin/resource/blog-image-4.jpg"),
-            new ImagesInstagram("images_admin/resource/footer-gallery-1.jpg", "images_admin/resource/blog-image-4.jpg"),
-        ]);
+        return InstagramImages::all()->map(function ($item) {
+            return new ImagesInstagram($item->image->image, $item->preview());
+        });
+//        return collect([
+//            new ImagesInstagram("images_admin/resource/footer-gallery-1.jpg", "images_admin/resource/blog-image-4.jpg"),
+//            new ImagesInstagram("images_admin/resource/footer-gallery-1.jpg", "images_admin/resource/blog-image-4.jpg"),
+//            new ImagesInstagram("images_admin/resource/footer-gallery-1.jpg", "images_admin/resource/blog-image-4.jpg"),
+//            new ImagesInstagram("images_admin/resource/footer-gallery-1.jpg", "images_admin/resource/blog-image-4.jpg"),
+//            new ImagesInstagram("images_admin/resource/footer-gallery-1.jpg", "images_admin/resource/blog-image-4.jpg"),
+//            new ImagesInstagram("images_admin/resource/footer-gallery-1.jpg", "images_admin/resource/blog-image-4.jpg"),
+//        ]);
     }
 
     /**

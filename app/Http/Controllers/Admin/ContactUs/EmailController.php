@@ -2,15 +2,9 @@
 
 namespace App\Http\Controllers\Admin\ContactUs;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExtenededController\ControllerInformation;
 
-class EmailController extends Controller
+class EmailController extends ControllerInformation
 {
-    public function emailShow()
-    {
-        return view("admin_panel.pages.contact_us.email");
-    }
-
-
+    public $type= 1;
 }

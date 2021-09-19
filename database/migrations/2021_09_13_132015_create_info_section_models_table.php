@@ -15,9 +15,9 @@ class CreateInfoSectionModelsTable extends Migration
     {
         Schema::create('info_section_models', function (Blueprint $table) {
             $table->id();
-            $table->string("title^ru");
-            $table->string("title^uz");
-            $table->string("title^en");
+            $table->string("title^ru")->default("");
+            $table->string("title^uz")->default("");
+            $table->string("title^en")->default("");
 
         });
     }

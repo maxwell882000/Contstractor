@@ -2,25 +2,11 @@
 
 namespace App\Http\Controllers\Admin\ShopGallery;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExtenededController\ControllerBaseCategory;
+use App\Models\Shop\CategoryShop;
 
-class CategoryController extends Controller
+class CategoryController extends ControllerBaseCategory
 {
-    private const PATH = "admin_panel.pages.show_gallery.category.";
-
-    public function categoryShowList()
-    {
-        return view(self::PATH . "category_shop_show");
-    }
-
-    public function categoryShow()
-    {
-        return view(self::PATH . "category_shop_input");
-    }
-
-    public function categoryInput()
-    {
-        return redirect()->back();
-    }
+    public $model = CategoryShop::class;
+    public $nameUrlParent = "admin.shop_gallery.";
 }

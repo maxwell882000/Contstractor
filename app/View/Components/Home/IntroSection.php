@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Home;
 
+use App\Models\Home\InfoSectionModel;
 use Illuminate\View\Component;
 
 class IntroSectionModel
@@ -47,19 +48,20 @@ class IntroSection extends Component
 
     public function __construct()
     {
+        $title = InfoSectionModel::all()->first();
+        $desc_left = $title->leftDescription();
+        $desc_right = $title->rightDescription();
         $more_info = [
-            new IntroDescription("01. 100% Organic",
-                "Cheese strings bocconcini gouda. Parmesan emmental danish fontina cheese triangles bocconcini rubber cheese cheese slices bavarian bergkase."
-                , "Read More", "#"),
-            new IntroDescription("02. Best Quality Products",
-                "Cheese strings bocconcini gouda. Parmesan emmental danish fontina cheese triangles bocconcini rubber cheese cheese slices bavarian bergkase."
-                , "Read More", "#")
+            new IntroDescription($desc_left->title,
+                $desc_left->body, $desc_left->button->name, $desc_left->button->link),
+            new IntroDescription($desc_right->title,
+                $desc_right->body, $desc_right->button->name, $desc_right->button->link),
         ];
         $this->information = new IntroSectionModel(
-            "Welcome to our  form",
-            "../images_admin/resource/crop-image-left.png",
+            $title->title,
+            $title->leftImage(),
             $more_info,
-            "../images_admin/resource/crop-image-right.png");
+            $title->rightImage(),);
     }
 
     /**

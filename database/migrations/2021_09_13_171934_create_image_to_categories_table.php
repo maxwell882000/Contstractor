@@ -18,7 +18,6 @@ class CreateImageToCategoriesTable extends Migration
             $table->id();
 
         });
-        DB::statement("ALTER TABLE image_to_categories ADD image MEDIUMBLOB");
     }
 
     /**

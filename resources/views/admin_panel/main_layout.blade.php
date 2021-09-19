@@ -25,9 +25,20 @@
 
 <div class="container-scroller">
     @include("admin_panel.partials._navbar")
+
     <div class="container-fluid page-body-wrapper">
     @include("admin_panel.partials._settings-panel")
     @include("admin_panel.partials._sidebar")
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+    @endif
+
     @yield("container")
     <!-- partial -->
     </div>
@@ -59,21 +70,22 @@
 <script src="{{asset("vendors/typeahead.js/typeahead.bundle.min.js")}}"></script>
 <script src="{{asset("vendors/select2/select2.min.js")}}"></script>
 <script src="{{asset("js/jquery.js")}}"></script>
+
+@yield("script")
 <script>
-    $("#image-upload").click(function (){
-       $("#image").trigger("click");
-        $("#image").on("change",function (){
-            let parent = $(this).parent();
-            parent.find("#show_text_when_uploaded").val("Загружено");
+    function observe(name){
+        $(`#${name}-upload`).click(function (){
+            $(`#${name}`).trigger("click");
+            $(`#${name}`).on("change",function (){
+                let parent = $(this).parent();
+                parent.find("#show_text_when_uploaded_" + name).val("Загружено");
+            });
         });
-    });
-    $("#icon-upload").click(function (){
-        $("#icon").trigger("click");
-        $("#icon").on("change",function (){
-            let parent = $(this).parent();
-            parent.find("#show_text_when_uploaded_icon").val("Загружено");
-        });
-    });
+    }
+    observe("image");
+    observe("icon");
+    observe("common_icon");
+
 </script>
 <!-- End plugin js_admin for this page -->
 </body>

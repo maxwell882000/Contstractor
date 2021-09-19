@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Warsaw : Organic Fruits &amp; Vegetables  HTML Template | Shop</title>
+<title>{{$title}}</title>
 <!-- Stylesheets -->
 <link href="css/bootstrap.css" rel="stylesheet">
     <x-common.style/>
@@ -27,10 +27,10 @@
 
 
     <!--Page Title-->
-    <x-common.banner/>
+    <x-common.banner type="2"/>
 
 
-    <x-shop.shop-show/>
+    <x-shop.shop-show :images="$product"/>
 
     <!--Main Footer / Footer Style One-->
     <x-partials.footer/>

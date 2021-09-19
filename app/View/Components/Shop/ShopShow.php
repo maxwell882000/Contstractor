@@ -3,17 +3,10 @@
 namespace App\View\Components\Shop;
 
 
-
+use App\InterfaceToFron\InterfaceToFront;
+use App\View\Components\Gallery\GalleryImages;
 use Illuminate\View\Component;
-class  ItemCategory
-{
-    public $title;
 
-    public function __construct($title)
-    {
-        $this->title = $title;
-    }
-}
 
 class ShopItem
 {
@@ -22,6 +15,7 @@ class ShopItem
     public $image_path;
     public $categories;
     public $currency;
+
     public function __construct($name, $price, $image_path, $categories, $currency = "$")
     {
         $this->name = $name;
@@ -34,6 +28,8 @@ class ShopItem
 
 class ShopShow extends Component
 {
+    use InterfaceToFront;
+
     /**
      * Create a new component instance.
      *
@@ -41,41 +37,23 @@ class ShopShow extends Component
      */
     public $titles;
     public $images;
-    public function __construct()
+    public $paginate;
+    public function __construct($images)
     {
-        $titles = [
-            new ItemCategory("animals"),
-            new ItemCategory("farm"),
-            new ItemCategory("flowers"),
-            new ItemCategory("dogs"),
-            new ItemCategory("cats"),
-            new ItemCategory("bUU"),
-        ];
+        $titles = [];
+        $this->paginate = $images;
+        $this->images = collect([]);
+        foreach ($images->items() as $image) {
+            $this->images[$image->id] = new ShopItem(
+                $image->name, $image->price,
+                $image->image->image,
+                $this->getCategory($image->category, $titles),
+                $image->currency
+            );
+        }
+
         $this->titles = $titles;
-        $this->images = [
-            new ShopItem("Kiwi","18.0","images_admin/gallery/1.jpg",[
-                $titles[0],
-            ]),
-            new ShopItem("Kiwi","18.0","images_admin/gallery/1.jpg",[
-                $titles[2],
-                $titles[1],
-            ]),
-            new ShopItem("Kiwi","18.0","images_admin/gallery/1.jpg",[
-                $titles[0],
-                $titles[4],
-                $titles[5],
-            ]),
-            new ShopItem("Kiwi","18.0","images_admin/gallery/1.jpg",[
-                $titles[0],
-                $titles[1],
-                $titles[2],
-                $titles[3],
-            ]),
-            new ShopItem("Kiwi","18.0","images_admin/gallery/1.jpg",[
-                $titles[0],
-                $titles[2],
-            ]),
-        ];
+
 
 
     }

@@ -2,6 +2,8 @@
 
 namespace App\View\Components\Common;
 
+use App\Models\Common\Sponsor;
+use App\Models\Common\SponsorTitle;
 use Illuminate\View\Component;
 
 class Partners
@@ -39,14 +41,12 @@ class Sponsors extends Component
 
     public function __construct()
     {
-        $sponsors = collect([
-            new SponsorsModel("images_admin/sponsors/1.png", "#"),
-            new SponsorsModel("images_admin/sponsors/2.png", "#"),
-            new SponsorsModel("images_admin/sponsors/3.png", "#"),
-            new SponsorsModel("images_admin/sponsors/4.png", "#"),
-            new SponsorsModel("images_admin/sponsors/5.png", "#"),
-        ]);
-        $this->partners = new Partners("Our Partnes", $sponsors);
+        $title = SponsorTitle::all()->first();
+        $sponsors = Sponsor::all()->map(function ($item) {
+            return new SponsorsModel($item->image->image, $item->link);
+        });
+
+        $this->partners = new Partners($title->title, $sponsors);
     }
 
     /**

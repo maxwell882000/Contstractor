@@ -1,8 +1,7 @@
-<div class="styled-pagination filter-tabs text-center">
-    <ul>
-        <li><a href="#" class="active">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a class="next" href="#">Next</a></li>
+<div class="styled-pagination text-center">
+    <ul class="filter-btns">
+        @for($i=1; $i <= $paginate->lastPage();$i++)
+            <li><a href="{{$paginate->url($i)}}" class="active">{{$i}}</a></li>
+        @endfor
     </ul>
 </div>

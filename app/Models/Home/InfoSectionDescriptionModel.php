@@ -3,10 +3,11 @@
 namespace App\Models\Home;
 
 use App\Models\Common\Buttons;
+use App\Models\CustomModel\ModelWithTranslate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InfoSectionDescriptionModel extends Model
+class InfoSectionDescriptionModel extends ModelWithTranslate
 {
     // relationship with button and link info section
     use HasFactory;
@@ -20,7 +21,7 @@ class InfoSectionDescriptionModel extends Model
         "title^ru",
         "title^uz",
         "title^en",
-        'info_section_model_id',
+
     ];
 
     public function button()

@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers\Admin\ContactUs;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExtenededController\ControllerInformation;
 
-class PhoneNumberController extends Controller
+class PhoneNumberController extends ControllerInformation
 {
-    public function phoneNumberShow()
-    {
-        return view("admin_panel.pages.contact_us.phone_number");
-    }
+    public $type = 2;
 }

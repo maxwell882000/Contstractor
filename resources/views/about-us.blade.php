@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Warsaw : Organic Fruits &amp; Vegetables  HTML Template | About Us</title>
+<title>{{$title}}</title>
 <!-- Stylesheets -->
 <link href="css/bootstrap.css" rel="stylesheet">
     <x-common.style/>
@@ -25,7 +25,7 @@
 
     <x-partials.header/>
     <!--Page Title-->
-    <x-common.banner/>
+    <x-common.banner type="0"/>
 
     <!--About Farm Section-->
     <x-about-us.about-company/>

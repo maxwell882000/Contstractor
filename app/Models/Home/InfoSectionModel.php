@@ -4,10 +4,11 @@ namespace App\Models\Home;
 
 use App\Models\Common\Icon;
 use App\Models\Common\Images;
+use App\Models\CustomModel\ModelWithTranslate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InfoSectionModel extends Model
+class InfoSectionModel extends ModelWithTranslate
 {
     use HasFactory;
 

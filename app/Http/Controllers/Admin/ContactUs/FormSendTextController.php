@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers\Admin\ContactUs;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExtenededController\ControllerExtendedInput;
+use App\Models\ContactUs\FormTitle;
 
-class FormSendTextController extends Controller
+class FormSendTextController extends ControllerExtendedInput
 {
-    public function formSendTextShow()
-    {
-        return view("admin_panel.pages.contact_us.form_send_text");
-    }
+    public $model = FormTitle::class;
+    public $nameInBlade = "form_title";
+    public $pathToBlade = "admin_panel.pages.contact_us.form_send_text";
 
-    public function formSendTextInput()
-    {
-        return redirect()->back();
-    }
 }

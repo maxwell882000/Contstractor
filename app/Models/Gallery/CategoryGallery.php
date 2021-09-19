@@ -2,14 +2,25 @@
 
 namespace App\Models\Gallery;
 
+use App\Models\CustomModel\ModelWithTranslate;
 use App\Models\Tags\ImageToCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class CategoryGallery extends Model
+
+class CategoryGallery extends ModelWithTranslate
 {
     use HasFactory;
+
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        "name^ru",
+        "name^uz",
+        "name^en",
+    ];
+
     public function image(){
-        return $this->morphToMany(ImageToCategory::class,"imagable");
+        return $this->belongsToMany(ImageToCategory::class,"imagables");
     }
 }

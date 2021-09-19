@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers\Admin\Home;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExtenededController\ControllerExtendedListInput;
+use App\Models\Home\CommentModel;
 
-class CommentsController extends Controller
+class CommentsController extends ControllerExtendedListInput
 {
-    private  const  PATH = "admin_panel.pages.home.comments.";
+    private const  PATH = "admin_panel.pages.home.comments.";
+    public $model = CommentModel::class;
+    public $nameInBlade = "comment";
+    public $pathToBlade = self::PATH . "comments_input";
+    public $nameInBladeList = "comment_list";
+    public $pathStoreImages = "images_store/comments";
+    public $pathToBladeInList = self::PATH . "comments_show";
 
-    public function commentsShowList(){
-        return view(self::PATH . "comments_show");
-    }
-    public function commentsShow(){
-        return view(self::PATH . "comments_input");
-    }
-
-    public function commentsInput(){
-        return redirect()->back();
-    }
 }

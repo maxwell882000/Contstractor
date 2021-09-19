@@ -2,7 +2,9 @@
 
 namespace App\View\Components\Home;
 
+use App\Models\Home\CommentModel;
 use Illuminate\View\Component;
+use function Symfony\Component\Translation\t;
 
 class CommentsModel
 {
@@ -29,36 +31,44 @@ class Comments extends Component
      */
     public $comments;
 
+
     public function __construct()
     {
-        $this->comments = collect([
-            new CommentsModel(
-                "There is huahe;fl fs;lk af alsfk;lasfk aj asoksa f;laa kaf;l akfl;as fj pgsksd",
-                "images_admin/resource/author-thumb-1.jpg",
-                "Adam Something",
-                "Seo 521Or Bla"
-            ),
-            new CommentsModel(
-                "There is huahe;fl fs;lk af alsfk;lasfk aj asoksa f;laa kaf;l akfl;as fj pgsksd",
-                "images_admin/resource/author-thumb-1.jpg",
-                "Adam Something",
-                "Seo 3Or Bla"
-            ),
-            new CommentsModel(
-                "There is huahe;fl fs;lk af alsfk;lasfk aj asoksa f;laa kaf;l akfl;as fj pgsksd",
-                "images_admin/resource/author-thumb-1.jpg",
-                "Adam Something",
-                "Seo2 Or Bla"
-            ),
-            new CommentsModel(
-                "There is huahe;fl fs;lk af alsfk;lasfk aj asoksa f;laa kaf;l akfl;as fj pgsksd",
-                "images_admin/resource/author-thumb-1.jpg",
-                "Adam Something",
-                "Seo1 Or Bla"
-            ),
-
-        ]);
+        $this->setComments();
+//        $this->comments = collect([
+//
+//            new CommentsModel(
+//                "There is huahe;fl fs;lk af alsfk;lasfk aj asoksa f;laa kaf;l akfl;as fj pgsksd",
+//                "images_admin/resource/author-thumb-1.jpg",
+//                "Adam Something",
+//                "Seo 3Or Bla"
+//            ),
+//            new CommentsModel(
+//                "There is huahe;fl fs;lk af alsfk;lasfk aj asoksa f;laa kaf;l akfl;as fj pgsksd",
+//                "images_admin/resource/author-thumb-1.jpg",
+//                "Adam Something",
+//                "Seo2 Or Bla"
+//            ),
+//            new CommentsModel(
+//                "There is huahe;fl fs;lk af alsfk;lasfk aj asoksa f;laa kaf;l akfl;as fj pgsksd",
+//                "images_admin/resource/author-thumb-1.jpg",
+//                "Adam Something",
+//                "Seo1 Or Bla"
+//            ),
+//        ]);
     }
+    public function setComments()
+    {
+        $this->comments = \App\Models\Home\CommentModel::all()->map(function ($item) {
+            return new CommentsModel(
+                $item->body,
+                $item->avatar(),
+                $item->name,
+                $item->profession
+            );
+        });
+    }
+
 
     /**
      * Get the view / contents that represent the component.

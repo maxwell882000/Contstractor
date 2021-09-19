@@ -1,25 +1,27 @@
 <?php
 
+use App\Helper\RouteBuilderList;
 use  \App\Http\Controllers\Admin\ShopGallery;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/shop_gallery")->name("shop_gallery.")->group(function () {
 
-    Route::get("/categoryShowList", [ShopGallery\CategoryController::class, "categoryShowList"])
-        ->name("category_show_list");
 
-    Route::get("/categoryShow", [ShopGallery\CategoryController::class, "categoryShow"])
-        ->name("category_show");
+    $begin_banner = new \App\Helper\RouteBuilder(ShopGallery\BeginBannerController::class, "begin_banner");
+    $begin_banner->show();
+    $begin_banner->input();
 
-    Route::post("/categoryInput", [ShopGallery\CategoryController::class, "categoryInput"])
-        ->name("category_input");
 
-    Route::get("/productsShowList", [ShopGallery\ProductController::class, "productsShowList"])
-        ->name("products_show_list");
+    $category = new RouteBuilderList(ShopGallery\CategoryController::class, "category");
+    $category->showList();
+    $category->show();
+    $category->input();
+    $category->delete();
 
-    Route::get("/productsShow", [ShopGallery\ProductController::class, "productsShow"])
-        ->name("products_show");
+    $images = new RouteBuilderList(ShopGallery\ProductController::class, "images");
+    $images->showList();
+    $images->show();
+    $images->input();
+    $images->delete();
 
-    Route::post("/productInput", [ShopGallery\ProductController::class, "productInput"])
-        ->name("product_input");
 });

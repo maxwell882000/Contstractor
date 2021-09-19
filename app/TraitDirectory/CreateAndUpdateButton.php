@@ -11,8 +11,8 @@ trait CreateAndUpdateButton
     {
         return [
             "name^uz" => $request->get("name^uz_" . $index) ?? "",
-            "name^en" => $request->get("name^uz_" . $index) ?? "",
-            "name^ru" => $request->get("name^uz_" . $index) ?? "",
+            "name^en" => $request->get("name^en_" . $index) ?? "",
+            "name^ru" => $request->get("name^ru_" . $index) ?? "",
             "link" => $request->get("link_" . $index) ?? "",
         ];
     }
@@ -32,6 +32,7 @@ trait CreateAndUpdateButton
 
     public function updateButton($request)
     {
+
         if ($request->has("button")) {
             for ($i = 1; $i <= $request->get("button"); $i++) {
                 $model = Buttons::find($request->get("id_button_" . $i));

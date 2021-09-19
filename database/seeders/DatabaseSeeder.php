@@ -13,6 +13,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            AdminUserSeed::class,
+            HeaderSeed::class,
+            LanguageSeed::class,
+            MapSeed::class,
+            InformationSeed::class,
+            StylesSeed::class,
+            WelcomeSeed::class
+        ]);
+
     }
 }

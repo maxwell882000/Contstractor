@@ -19,9 +19,9 @@ class CreateHotlinesTable extends Migration
             $table->string("mini_header^uz");
             $table->string("mini_header^en");
             $table->string("phone");
-            $table->text("motivation_body^ru");
-            $table->text("motivation_body^uz");
-            $table->text("motivation_body^en");
+            $table->text("body^ru");
+            $table->text("body^uz");
+            $table->text("body^en");
         });
     }
 

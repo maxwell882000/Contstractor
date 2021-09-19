@@ -1,47 +1,51 @@
 <?php
 
+use App\Helper\RouteBuilderList;
 use Illuminate\Support\Facades\Route;
-use  \App\Http\Controllers\Admin\AboutCompany;
+use \App\Http\Controllers\Admin\AboutCompany;
+use \App\Helper\RouteBuilder;
 
 Route::prefix("/about_us")->name("about_us.")->group(function () {
-    Route::get("/beginBannerShow", [AboutCompany\BeginBannerController::class, "beginBannerShow"])
-        ->name("begin_banner_show");
+    $company = new RouteBuilderList(AboutCompany\DescCompanyController::class, "company_about");
+    $personal = new RouteBuilderList(AboutCompany\PersonsController::class, "persons");
+    $banner = new RouteBuilder(AboutCompany\BeginBannerController::class, "begin_banner");
+    $hotline = new RouteBuilder(AboutCompany\HotlineController::class, "hotline");
 
-    Route::post("/beginBannerInput", [AboutCompany\BeginBannerController::class, "beginBannerInput"])
-        ->name("begin_banner_input");
-
-    Route::get("/companyAboutTitleShow", [AboutCompany\DescCompanyController::class, "companyAboutTitleShow"])
-        ->name("company_about_title_show");
-
-    Route::post("/companyAboutTitleInput", [AboutCompany\DescCompanyController::class, "companyAboutTitleInput"])
-        ->name("company_about_title_input");
-
-    Route::get("/companyAboutShowList", [AboutCompany\DescCompanyController::class, "companyAboutShowList"])
-        ->name("company_about_show_list");
-
-    Route::get("/companyAboutShow", [AboutCompany\DescCompanyController::class, "companyAboutShow"])
-        ->name("company_about_show");
-
-    Route::post("/companyAboutInput", [AboutCompany\DescCompanyController::class, "companyAboutInput"])
-        ->name("companyAboutInput");
-
-    Route::get("/hotlineShow", [AboutCompany\HotlineController::class, "hotlineShow"])
-        ->name("hotline_show");
-
-    Route::post("/hotlineInput", [AboutCompany\HotlineController::class, "hotlineInput"])
-        ->name("hotline_input");
-
-    Route::get("/personsShowList", [AboutCompany\PersonsController::class, "personsShowList"])
-        ->name("persons_show_list");
-
-    Route::post("/personsTitleInput", [AboutCompany\PersonsController::class, "personsTitleInput"])
-        ->name("persons_title_input");
+    $banner->show();
+    $banner->input();
 
 
-    Route::get("/personsShow", [AboutCompany\PersonsController::class, "personsShow"])
-        ->name("persons_show");
+    $company->showList();
 
-    Route::post("/personsInput", [AboutCompany\PersonsController::class, "personsInput"])
-        ->name("persons_input");
+    $company->titleInput();
+
+    $company->newShow();
+
+    $company->newCreate();
+
+    $company->show();
+
+    $company->input();
+
+    $company->delete();
+
+
+    $personal->showList();
+
+    $personal->titleInput();
+
+    $personal->newShow();
+
+    $personal->newCreate();
+
+    $personal->show();
+
+    $personal->input();
+
+    $personal->delete();
+
+
+    $hotline->show();
+    $hotline->input();
 
 });

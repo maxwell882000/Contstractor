@@ -18,7 +18,10 @@ class CreatePersonalsDescriptionsTable extends Migration
             $table->string("name^ru");
             $table->string("name^uz");
             $table->string("name^en");
-
+            $table->string("body^ru");
+            $table->string("body^uz");
+            $table->string("body^en");
+            $table->bigInteger("personals_title_id")->nullable();
         });
     }
 

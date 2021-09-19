@@ -19,8 +19,8 @@ class CreateButtonsTable extends Migration
             $table->string("name^en")->default("");
             $table->string("name^uz")->default("");
             $table->string("link")->default("");
-            $table->string("button_type");
-            $table->bigInteger("button_id");
+            $table->string("button_type")->nullable($value = true);
+            $table->bigInteger("button_id")->nullable($value=true);
         });
     }
 

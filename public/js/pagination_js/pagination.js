@@ -1,4 +1,3 @@
-
 class Pagination {
     selectedObj;
     previousId;
@@ -21,13 +20,28 @@ class Pagination {
     }
 
     setNewClick(obj) {
-        if (this.previousId !== this.getUniqueId($(obj))) {
-            console.log("CHANGED");
+        if (this.currentId !== this.getUniqueId($(obj))) {
             this.selectedObj.removeClass("active");
-            this.previousId = this.currentId;
+
+            let last = this.currentId;
             this.selectedObj = $(obj);
-            this.currentId = this.getUniqueId(this.selectedObj);
+            let current = this.getUniqueId(this.selectedObj);
+
+            if ((current === (this.firstId + 2)) && last === this.firstId && last < current) {
+                this.previousId = current - 1;
+            } else if ((current === (this.lastId - 2)) && last === this.lastId && last > current) {
+                this.previousId = current + 1;
+            } else {
+                this.previousId = last;
+            }
+
+            this.currentId = current;
+
         }
+        console.log("After")
+        console.log("PE" + this.previousId);
+        console.log("Cu" + this.currentId);
+
     }
 
     isClickable() {
@@ -52,6 +66,7 @@ class Pagination {
         function isBeforeLastObjectIsSelectedAndGoesUp() {
             return (paginator.lastId - 1 === paginator.currentId && paginator.previousId > paginator.currentId);
         }
+
         return !(currentObjectIsSelected()
             || isLastObjectSelected()
             || isFirstObjectSelected()
@@ -59,33 +74,56 @@ class Pagination {
             || isBeforeLastObjectIsSelectedAndGoesUp());
     }
 
+    deleteFirst() {
+        return this.previousId === this.firstId ||
+            this.previousId === this.firstId + 1;
+    }
+
+    deleteFourthFromEnd() {
+        return this.currentId === this.lastId - 1;
+    }
+
     goDown() {
-        const upDeleteIndex = this.previousId === this.firstId ||
-        this.previousId === this.firstId + 1 ? this.firstId : this.currentId - 1;
+        const upDeleteIndex = this.deleteFirst() ? this.firstId : this.deleteFourthFromEnd() ? this.currentId - 2 : this.currentId - 1;
         $(this.allBtn[upDeleteIndex]).addClass("remove-circle");
         $(this.allBtn[this.currentId + 1]).removeClass("remove-circle").addClass("transition-show");
     }
 
+    deleteLast() {
+        return this.previousId === this.lastId ||
+            this.previousId === this.lastId - 1;
+    }
+
+    deleteFourth() {
+        return this.currentId === this.firstId + 1;
+    }
+
     goUp() {
-        const downDeleteIndex = this.previousId === this.lastId ||
-        this.previousId === this.lastId - 1 ? this.lastId : this.currentId + 1;
+        const downDeleteIndex = this.deleteLast() ? this.lastId : this.deleteFourth() ? this.currentId + 2 : this.currentId + 1;
         $(this.allBtn[downDeleteIndex]).addClass("remove-circle");
         $(this.allBtn[this.currentId - 1]).removeClass("remove-circle").addClass("transition-show");
     }
 
+    isGoingUp() {
+        return this.lastId - 1 !== this.currentId
+            && this.currentId < this.previousId;
+    }
+
+    isGoingDown() {
+        return this.firstId + 1 !== this.currentId
+            && this.currentId > this.previousId;
+    }
+
     checkNecessityGoUpOrDown() {
-        if (this.lastId - 1 !== this.currentId
-            && this.currentId < this.previousId) {
+        if (this.isGoingUp()) {
             this.goUp();
-        } else if (this.firstId + 1 !== this.currentId
-            && this.currentId > this.previousId) {
+        } else if (this.isGoingDown()) {
             this.goDown();
         }
     }
 
     actionOnClick() {
-        console.log(this.firstId);
-        console.log(this.currentId);
+
         if (this.isClickable()) {
             this.allBtn.addClass("transition-hide");
             setTimeout(() => {
@@ -107,11 +145,11 @@ class Pagination {
         )
     }
 }
+
 try {
     const paginate = new Pagination(".pagination-start")
     paginate.paginationStart();
-}
-catch (e) {
+} catch (e) {
 
 }
 

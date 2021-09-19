@@ -2,15 +2,9 @@
 
 namespace App\Http\Controllers\Admin\ContactUs;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExtenededController\ControllerInformation;
 
-class AddressController extends Controller
+class AddressController extends ControllerInformation
 {
-
-    public function addressShow()
-    {
-        return view("admin_panel.pages.contact_us.address");
-    }
-
+    public $type = 0;
 }

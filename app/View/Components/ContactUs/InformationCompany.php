@@ -2,8 +2,8 @@
 
 namespace App\View\Components\ContactUs;
 
+use App\Models\Common\Information;
 use Illuminate\View\Component;
-use function Symfony\Component\Translation\t;
 
 class InformationCompanyModel
 {
@@ -30,11 +30,24 @@ class InformationCompany extends Component
 
     public function __construct()
     {
+        $address = Information::address();
+        $email = Information::email();
+        $phone = Information::phone();
         $this->informations = [
-            new InformationCompanyModel("Address", "flaticon-placeholder", "44 New Design Street, Down Town, Melbourne 005"),
-            new InformationCompanyModel("Call to Us", "flaticon-technology-4", "564-334-21-22-34 <br>664-334-21-22-34"),
-            new InformationCompanyModel("Emails us", "flaticon-envelope", "information@yourdomain.com"),
+            $this->getInfo($address),
+            $this->getInfo($email),
+            $this->getInfo($phone)
         ];
+//        $this->informations = [
+//            new InformationCompanyModel("Address", "flaticon-placeholder", "44 New Design Street, Down Town, Melbourne 005"),
+//            new InformationCompanyModel("Call to Us", "flaticon-technology-4", "564-334-21-22-34 <br>664-334-21-22-34"),
+//            new InformationCompanyModel("Emails us", "flaticon-envelope", "information@yourdomain.com"),
+//        ];
+    }
+
+    public function getInfo($model)
+    {
+        return new InformationCompanyModel($model->title, $model->icon_data, $model->data);
     }
 
     /**

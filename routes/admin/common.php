@@ -1,44 +1,49 @@
 <?php
 
+use App\Helper\RouteBuilder;
+use App\Helper\RouteBuilderList;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\Common;
-    Route::prefix("/common")->name("common.")->group(function () {
-    Route::get("/footerShow", [Common\FooterController::class, "footerShow"])
-        ->name("footer_show");
 
-    Route::post("/footerInput", [Common\FooterController::class, "footerInput"])
-        ->name("footer_input");
+Route::prefix("/common")->name("common.")->group(function () {
 
-    Route::get("/headerShow", [Common\HeaderController::class, "headerShow"])
-        ->name("header_show");
+    $header = new RouteBuilderList(Common\HeaderController::class, "header");
+    $header->showList();
+    $header->show();
+    $header->input();
+    $header->delete();
 
-    Route::post("/headerInput", [Common\HeaderController::class, "headerInput"])
-        ->name("header_input");
+    $logo = new RouteBuilder(Common\LogoController::class, "logo");
+    $logo->show();
+    $logo->input();
 
-    Route::get("/logoShow", [Common\LogoController::class, "logoShow"])
-        ->name("logo_show");
+    $map = new RouteBuilder(Common\MapController::class, "map");
+    $map->show();
+    $map->input();
 
-    Route::post("/logoInput", [Common\LogoController::class, "logoInput"])
-        ->name("logo_input");
+    $style = new RouteBuilder(Common\StylesController::class, "styles");
+    $style->show();
+    $style->input();
 
-    Route::get("/mapShow", [Common\MapController::class, "mapShow"])
-        ->name("map_show");
+    $common = new RouteBuilder(Common\CommonAllController::class, "common");
+    $common->show();
+    $common->input();
 
-    Route::post("/mapInput", [Common\MapController::class, "mapInput"])
-        ->name("map_input");
+    $sponsor = new RouteBuilderList(Common\SponsorController::class, "sponsor");
 
-    Route::get("/sponsorShowList", [Common\SponsorController::class, "sponsorShowList"])
-        ->name("sponsor_show_list");
+    $sponsor->showList();
 
-    Route::get("/sponsorShow", [Common\SponsorController::class, "sponsorShow"])
-        ->name("sponsor_show");
+    $sponsor->titleInput();
 
-    Route::post("/sponsorInput", [Common\SponsorController::class, "sponsorInput"])
-        ->name("sponsor_input");
+    $sponsor->newShow();
 
-    Route::get("/stylesShow", [Common\StylesController::class, "stylesShow"])
-        ->name("styles_show");
+    $sponsor->newCreate();
 
-    Route::post("/stylesInput", [Common\StylesController::class, "stylesInput"])
-        ->name("styles_input");
+    $sponsor->show();
+
+    $sponsor->input();
+
+    $sponsor->delete();
+
+
 });

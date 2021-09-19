@@ -2,49 +2,36 @@
 
 namespace App\Repository;
 
+use App\Http\Controllers\ExtenededController\AbstractControllers\AbstractStyleController;
 use App\Models\Common\Images;
+use App\TraitDirectory\CheckMethodExists;
+use App\TraitDirectory\CreateAndUpdateImage;
 use Illuminate\Support\Facades\Storage;
 
-class ImageRepository
+class ImageRepository extends AbstractImageRepository
 {
+    use  CheckMethodExists;
+
     public $model = Images::class;
     public $key_word = "image";
+    public $pathImages;
 
-    public function createImagable($request, $type, $id, $pathStoreImages)
+    public function __construct($pathStoreImages)
+    {
+        $this->pathImages = $pathStoreImages;
+    }
+
+    public function createImagable($request, $type, $id)
     {
         if ($request->hasFile($this->key_word)) {
-            $path = $this->uploadFile($request, $pathStoreImages);
+            $path = $this->uploadFile($request, $this->pathImages);
             $this->createNew($path, $type, $id);
+        } else if ($this->methodExists($type, $this->key_word)) {
+            $this->createNew("", $type, $id);
         }
-        $this->createNew("", $type, $id);
-    }
 
-    private function uploadFile($request, $path)
-    {
-        $name = time() . "." . $request->file($this->key_word)->extension();
-        $request->file($this->key_word)->move($path . "/" . $this->key_word , $name);
-        return $path . "/" . $this->key_word . "/" . $name;
     }
-
-    public function updateImagable($request, $model, $pathStoreImages)
-    {
-        if ($request->hasFile($this->key_word)) {
-            if ($model) {
-                $this->deletePath($model);
-                $model[$this->key_word] = $this->uploadFile($request, $pathStoreImages);
-                $model->save();
-            }
-        }
-    }
-
-    public function deletePath($model)
-    {
-        Storage::delete($model[$this->key_word]);
-        $model[$this->key_word] = "";
-        $model->save();
-    }
-
-    public function createNew($image, $type, $id)
+    protected function createNew($image, $type, $id)
     {
         return $this->model::create(
             [
@@ -54,6 +41,5 @@ class ImageRepository
             ]
         );
     }
-
 
 }

@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers\Admin\AboutCompany;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExtenededController\ControllerExtendedInput;
+use App\Models\AboutCompany\Hotline;
 
-class HotlineController extends Controller
+class HotlineController extends ControllerExtendedInput
 {
-    public function hotlineShow()
-    {
-        return view('admin_panel.pages.about_company.hotline');
-    }
+    private const PATH = 'admin_panel.pages.about_company.hotline';
+    public $model = Hotline::class;
+    public $nameInBlade = "hotline";
+    public $pathToBlade = self::PATH;
+    public $pathStoreImages = "images_store/hotline";
 
-    public function hotlineInput()
-    {
-        return redirect()->back();
-    }
+
 }

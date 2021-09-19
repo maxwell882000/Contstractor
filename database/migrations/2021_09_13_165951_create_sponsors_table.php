@@ -16,7 +16,7 @@ class CreateSponsorsTable extends Migration
         Schema::create('sponsors', function (Blueprint $table) {
             $table->id();
             $table->string("link");
-            $table->bigInteger("sponsor_titles_id");
+            $table->bigInteger("sponsor_titles_id")->nullable();
         });
     }
 

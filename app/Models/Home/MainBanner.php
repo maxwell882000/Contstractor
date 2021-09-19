@@ -4,11 +4,9 @@ namespace App\Models\Home;
 
 use App\Models\Common\Buttons;
 use App\Models\Common\Images;
-use App\Models\Common\Languages;
 use App\Models\CustomModel\ModelWithTranslate;
 use App\TraitDirectory\LanguageCheckTrade;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class MainBanner extends ModelWithTranslate
 { // establish relationship

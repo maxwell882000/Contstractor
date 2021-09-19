@@ -3,13 +3,13 @@
 
         <!--Map Canvas-->
         <div class="map-canvas"
-             data-zoom="10"
-             data-lat="23.815811"
-             data-lng="90.412580"
-             data-type="roadmap"
-             data-hue="#fc721e"
-             data-title="Dhaka"
-             data-content="Dhaka 1000-1200, Bangladesh<br><a href='mailto:info@youremail.com'>info@youremail.com</a>"
+             data-zoom="{{$map_data->zoom}}"
+             data-lat="{{$map_data->lat}}"
+             data-lng="{{$map_data->lang}}"
+             data-type="{{$map_data->type}}"
+             data-hue="{{$map_data->hue_color}}"
+             data-title="{{$map_data->title}}"
+             data-content="{{$map_data->content}}"
              style="height:450px;">
         </div>
 

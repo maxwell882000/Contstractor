@@ -15,9 +15,12 @@ class CreateSectionNearMapsTable extends Migration
     {
         Schema::create('section_near_maps', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string("header");
-
+            $table->string("title^uz");
+            $table->string("title^ru");
+            $table->string("title^en");
+            $table->string("header^uz");
+            $table->string("header^ru");
+            $table->string("header^en");
         });
     }
 

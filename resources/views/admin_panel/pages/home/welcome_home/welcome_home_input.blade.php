@@ -4,7 +4,7 @@
     <div class="col-8 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Заполните Главный Банер</h4>
+                <h4 class="card-title">Заполните Приветствие</h4>
                 <form method="post" class="forms-sample">
                     @csrf
                     <input style="display: none" type="number" name="id" value="{{$object->id ?? ""}}"/>

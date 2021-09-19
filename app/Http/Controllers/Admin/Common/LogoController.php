@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin\Common;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExtenededController\ControllerExtendedInput;
+use App\Models\Common\Logo;
 
-class LogoController extends Controller
+class LogoController extends ControllerExtendedInput
 {
-    public function logoShow()
-    {
-        return view("admin_panel.pages.common.logo");
-    }
+    private const  PATH = "admin_panel.pages.common.";
+    public $model = Logo::class;
+    public $offValidation = true;
+    public $pathStoreImages = "images_store/logo";
+    public $nameInBlade = "logo";
+    public $pathToBlade = self::PATH . "logo";
 
-    public function logoInput(){
-        return redirect()->back();
-    }
 }

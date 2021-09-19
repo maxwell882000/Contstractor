@@ -11,7 +11,7 @@
     //Active class can be hard coded directly in html file also as required
 
     function addActiveClass(element) {
-        console.log(parseInt(element.attr("isActive")));
+
       // if (current === "") {
       //   //for root url
 

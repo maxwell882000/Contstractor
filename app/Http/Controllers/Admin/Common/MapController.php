@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Admin\Common;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExtenededController\ControllerExtendedInput;
+use App\Models\Common\GoogleMapConf;
 
-class MapController extends Controller
+class MapController extends ControllerExtendedInput
 {
-    function mapShow(){
-        return view("admin_panel.pages.common.map");
-    }
-    function mapInput(){
-        return redirect()->back();
-    }
+    private const  PATH = "admin_panel.pages.common.";
+    public $model = GoogleMapConf::class;
+    public $nameInBlade = "map";
+    public $pathToBlade = self::PATH . "map";
+
 }

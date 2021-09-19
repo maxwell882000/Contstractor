@@ -4,19 +4,22 @@ use \App\Http\Controllers\Admin\Home;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/home")->name("home.")->group(function () {
-    Route::get("/commentList", [Home\CommentsController::class, "commentsShowList"])
+    Route::get("/commentList", [Home\CommentsController::class, "modelShowList"])
         ->name("comments_list");
 
-    Route::get("/commentShow", [Home\CommentsController::class, "commentsShow"])
+    Route::get("/commentShow/{id}", [Home\CommentsController::class, "modelShowExisting"])
         ->name("comments_show");
 
-    Route::post("/commentList", [Home\CommentsController::class, "commentsInput"])
+    Route::post("/commentShow/{id}", [Home\CommentsController::class, "modelInput"])
         ->name("comments_input");
 
-    Route::get("/descBeforeCardShow", [Home\DescBeforeCardController::class, "descBeforeCardShow"])
+    Route::get("/commentDelete/{id}", [Home\CommentsController::class, "modelDelete"])
+        ->name("comments_delete");
+
+    Route::get("/descBeforeCardShow", [Home\DescBeforeCardController::class, "modelShow"])
         ->name("desc_before_card_show");
 
-    Route::post("/descBeforeCardInput", [Home\DescBeforeCardController::class, "descBeforeCardShow"])
+    Route::post("/descBeforeCardShow", [Home\DescBeforeCardController::class, "modelInput"])
         ->name("desc_before_card_input");
 
     Route::get("/mainBannerShow", [Home\MainBannerController::class, "modelShow"])
@@ -40,7 +43,7 @@ Route::prefix("/home")->name("home.")->group(function () {
     Route::get("/welcomeHomeShow", [Home\WelcomeHomeController::class, "modelShowList"])
         ->name("welcome_home_show_list");
 
-    Route::post("/welcomeHomeShow/title", [Home\WelcomeHomeController::class, "modelObjectInput"])
+    Route::post("/welcomeHomeShow/title", [Home\WelcomeHomeController::class, "modelTitleInput"])
         ->name("welcome_home_title_input");
 
     Route::get("/welcomeHomeShow/{id}", [Home\WelcomeHomeController::class, "modelShowExisting"])

@@ -1,25 +1,31 @@
 <?php
 
 
+use App\Helper\RouteBuilder;
 use  \App\Http\Controllers\Admin\ContactUs;
 use Illuminate\Support\Facades\Route;
+
 Route::prefix("/contact_us")->name("contact_us.")->group(function () {
-    Route::get("/addressShow", [ContactUs\AddressController::class, "addressShow"])
-        ->name("address_show");
 
-    Route::get("/emailShow", [ContactUs\EmailController::class, "emailShow"])
-        ->name("email_show");
+    $begin_banner = new \App\Helper\RouteBuilder(ContactUs\BeginBannerController::class, "begin_banner");
+    $begin_banner->show();
+    $begin_banner->input();
 
-    Route::get("/phoneNumberShow", [ContactUs\PhoneNumberController::class, "phoneNumberShow"])
-        ->name("phone_number_show");
 
-    Route::post("/informationInput", [ContactUs\InformationController::class, "informationInput"])
-        ->name("information_input");
+    $address = new RouteBuilder(ContactUs\AddressController::class, "address");
+    $address->show();
+    $address->input();
 
-    Route::get("/formSendTextShow", [ContactUs\FormSendTextController::class, "formSendTextShow"])
-        ->name("form_send_text_show");
+    $email = new RouteBuilder(ContactUs\EmailController::class, "email");
+    $email->show();
+    $email->input();
 
-    Route::post("/formSendTextInput", [ContactUs\FormSendTextController::class, "formSendTextInput"])
-        ->name("form_send_text_input");
+    $phone_number = new RouteBuilder(ContactUs\PhoneNumberController::class, "phone_number");
+    $phone_number->show();
+    $phone_number->input();
 
+
+    $form = new RouteBuilder(ContactUs\FormSendTextController::class, "form_send_text");
+    $form->show();
+    $form->input();
 });

@@ -2,20 +2,13 @@
 
 namespace App\Http\Controllers\Admin\ShopGallery;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExtenededController\ControllerBaseImageCategory;
+use App\Models\Tags\ProductToCategory;
 
-class ProductController extends Controller
+class ProductController extends ControllerBaseImageCategory
 {
-    private const PATH = "admin_panel.pages.shop_gallery.product.";
-    public function productsShowList(){
-        return view(self::PATH . "product_show");
-    }
-    public function productsShow(){
-        return view(self::PATH .  "product_input");
-    }
+    public $nameUrlParent = "admin.shop_gallery.";
+    public $pathToBlade =  self::PATH . "images_shop_input";
 
-    public function  productInput(){
-        return redirect()->back();
-    }
+    public $model = ProductToCategory::class;
 }

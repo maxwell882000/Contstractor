@@ -2,8 +2,8 @@
 
 namespace App\View\Components\AboutUs;
 
+use App\Models\AboutCompany\Hotline;
 use Illuminate\View\Component;
-use function Symfony\Component\Translation\t;
 
 class  CallAboutModel
 {
@@ -34,12 +34,12 @@ class CallAbout extends Component
 
     public function __construct()
     {
-        $this->calls = new CallAboutModel("HOTLINE",
-            "(+01)- 123 789 456",
-            "Trains women to work in professional kitchens, provides healthy meals for childcare centers, and uses food ...",
-        "images_admin/resource/man-with-food-2.png",
-        "images_admin/resource/food-image-12.png");
-
+        $hotline = Hotline::all()->first();
+        $this->calls = new CallAboutModel($hotline->mini_header,
+            $hotline->phone,
+            $hotline->body,
+            $hotline->imageLeft->icon,
+            $hotline->imageRight->image);
     }
 
     /**

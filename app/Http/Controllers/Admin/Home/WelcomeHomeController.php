@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin\Home;
 
 
-use App\Http\Controllers\ExtenededController\ControllerExtendedListInput;
+use App\Http\Controllers\ExtenededController\ControllerExtendedListInputWithTitle;
 use App\Http\RequestCustom;
 use App\Models\Common\Buttons;
 use App\Models\Home\InfoSectionDescriptionModel;
 use App\Models\Home\InfoSectionModel;
 
 
-class WelcomeHomeController extends ControllerExtendedListInput
+class WelcomeHomeController extends ControllerExtendedListInputWithTitle
 {
     private const PATH = "admin_panel.pages.home.welcome_home.";
     public $model = InfoSectionDescriptionModel::class;
@@ -19,21 +19,10 @@ class WelcomeHomeController extends ControllerExtendedListInput
     public $nameInBladeList = "object_list";
     public $pathStoreImages = "images_store/welcome";
     public $pathToBladeInList = self::PATH . "welcome_home_show";
+    public $modelParent = InfoSectionModel::class;
 
-    public function modelShowList()
-    {
-        $title = InfoSectionModel::all()->first();
-        return view($this->pathToBladeInList, [$this->nameInBlade => $title]);
-    }
 
-    public function modelObjectInput(RequestCustom $requestCustom)
-    {
 
-        $this->model = InfoSectionModel::class;
-        $model = $this->modelInput($requestCustom);
-        $this->model = InfoSectionDescriptionModel::class;
-        return $model;
-    }
 
     public function modelShowExisting(RequestCustom $requestCustom, int $id)
     {

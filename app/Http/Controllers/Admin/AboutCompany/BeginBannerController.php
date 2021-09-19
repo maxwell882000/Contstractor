@@ -2,18 +2,9 @@
 
 namespace App\Http\Controllers\Admin\AboutCompany;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExtenededController\ControllerBanner;
 
-class BeginBannerController extends Controller
+class BeginBannerController extends ControllerBanner
 {
-    public function beginBannerShow()
-    {
-        return view("admin_panel.pages.about_company.begin_banner");
-    }
-
-    public function beginBannerInput(Request $request)
-    {
-        return redirect()->back();
-    }
+    public $type = 0;
 }

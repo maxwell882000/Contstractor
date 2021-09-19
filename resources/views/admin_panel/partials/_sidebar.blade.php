@@ -58,6 +58,8 @@
             </a>
             <div class="collapse" id="charts">
                 <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.gallery.begin_banner_show"))1 @else 0 @endif" href="{{route("admin.gallery.begin_banner_show")}}">Начальный баннер</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.gallery.category_show_list"))1 @else 0 @endif" href="{{route("admin.gallery.category_show_list")}}">Категории для галереи</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.gallery.images_show_list"))1 @else 0 @endif" href="{{route("admin.gallery.images_show_list")}}">Картинки</a></li>
@@ -72,9 +74,11 @@
             </a>
             <div class="collapse" id="tables">
                 <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.shop_gallery.begin_banner_show"))1 @else 0 @endif" href="{{route("admin.shop_gallery.begin_banner_show")}}">Начальный баннер</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.shop_gallery.category_show_list"))1 @else 0 @endif" href="{{route("admin.shop_gallery.category_show_list")}}">Категория для шоп
                             галереи</a></li>
-                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.shop_gallery.products_show_list"))1 @else 0 @endif" href="{{route("admin.shop_gallery.products_show_list")}}">Товары</a></li>
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.shop_gallery.images_show_list"))1 @else 0 @endif" href="{{route("admin.shop_gallery.images_show_list")}}">Товары</a></li>
                 </ul>
             </div>
         </li>
@@ -87,6 +91,8 @@
             </a>
             <div class="collapse" id="connection">
                 <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.contact_us.begin_banner_show"))1 @else 0 @endif" href="{{route("admin.contact_us.begin_banner_show")}}">Начальный баннер</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.contact_us.address_show"))1 @else 0 @endif" href="{{route("admin.contact_us.address_show")}}">Аддресс</a></li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.contact_us.phone_number_show"))1 @else 0 @endif" href="{{route("admin.contact_us.phone_number_show")}}">Номера телефонов</a></li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.contact_us.email_show"))1 @else 0 @endif" href="{{route("admin.contact_us.email_show")}}">Email</a></li>
@@ -102,12 +108,28 @@
             </a>
             <div class="collapse" id="icons">
                 <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.common_show"))1 @else 0 @endif" href="{{route("admin.common.common_show")}}">Общие</a></li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.logo_show"))1 @else 0 @endif" href="{{route("admin.common.logo_show")}}">Лого</a></li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.map_show"))1 @else 0 @endif" href="{{route("admin.common.map_show")}}">Карты</a></li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.styles_show"))1 @else 0 @endif" href="{{route("admin.common.styles_show")}}">Стили</a></li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.sponsor_show_list"))1 @else 0 @endif" href="{{route("admin.common.sponsor_show_list")}}">Спонсоры</a></li>
-                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.header_show"))1 @else 0 @endif" href="{{route("admin.common.header_show")}}">Header</a></li>
-                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.footer_show"))1 @else 0 @endif" href="{{route("admin.common.footer_show")}}">Footer</a></li>
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.header_show_list"))1 @else 0 @endif" href="{{route("admin.common.header_show_list")}}">Header</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#footer" aria-expanded="false" aria-controls="footer">
+                <i class="icon-plus menu-icon"></i>
+                <span class="menu-title">Footer</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="footer">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.footer.featured_links_show_list"))1 @else 0 @endif" href="{{route("admin.footer.featured_links_show_list")}}">Featured Links</a></li>
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.footer.instagram_feed_show_list"))1 @else 0 @endif" href="{{route("admin.footer.instagram_feed_show_list")}}">Instagram Feed</a></li>
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.footer.follow_show_list"))1 @else 0 @endif" href="{{route("admin.footer.follow_show_list")}}">Follow Us</a></li>
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.footer.keep_in_touch_show"))1 @else 0 @endif" href="{{route("admin.footer.keep_in_touch_show")}}">Keep in Touch</a></li>
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.footer.left_most_text_show"))1 @else 0 @endif" href="{{route("admin.footer.left_most_text_show")}}">Текст Слева</a></li>
                 </ul>
             </div>
         </li>

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Common;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExtenededController\ControllerExtendedInput;
+use App\Models\Home\CommentModel;
 
-class FooterController extends Controller
+class FooterController extends ControllerExtendedInput
 {
-    public function footerShow(){
-        return view("admin_panel.pages.common.footer");
-    }
-    public function footerInput(){
-        return redirect()->back();
-    }
+    private const  PATH = "admin_panel.pages.home.comments.";
+    public $model = CommentModel::class;
+    public $nameInBlade = "footer";
+    public $pathToBlade = self::PATH . "footer";
+    public $pathStoreImages = "images_store/footer";
+
 }

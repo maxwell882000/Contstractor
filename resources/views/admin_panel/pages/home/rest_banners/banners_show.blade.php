@@ -11,30 +11,12 @@
                        class="btn btn-info btn-rounded">Создать</a>
                 </div>
                 <br/>
-                <div class="table-responsive">
-
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th colspan="2">№</th>
-                            <th colspan="2">Содержимое</th>
-                            <th colspan="2">Действие</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($banner_list as $banner)
-                            <tr>
-                                <td colspan="2">{{$loop->iteration}}</td>
-                                <td colspan="2">{{$banner["body^ru"]}}</td>
-                                <td colspan="1"><a href="{{route("admin.home.banner_show", $banner->id)}}"
-                                                   class="btn btn-info btn-rounded">Посмотреть</a></td>
-                                <td colspan="1"><a href="{{route("admin.home.banner_delete", $banner->id)}}"
-                                                   class="btn btn-danger btn-rounded">Удалить</a></td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                @include("admin_panel.helper.form_helper.table",
+                   ["key"=>"body",
+                   "list"=>$banner_list,
+                   "route_show"=>"admin.home.banner_show",
+                   "route_delete"=>"admin.home.banner_delete"
+                   ])
             </div>
         </div>
     </div>

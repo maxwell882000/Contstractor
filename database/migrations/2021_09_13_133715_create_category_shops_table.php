@@ -15,10 +15,10 @@ class CreateCategoryShopsTable extends Migration
     {
         Schema::create('category_shops', function (Blueprint $table) {
             $table->id();
-            $table->string("types");
-            $table->string("name_types^ru");
-            $table->string("name_types^uz");
-            $table->string("name_types^en");
+
+            $table->string("name^ru");
+            $table->string("name^uz");
+            $table->string("name^en");
         });
     }
 

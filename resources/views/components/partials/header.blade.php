@@ -30,11 +30,11 @@
                                     <li class=@if(Request::is($header->link))"current"@endif><a
                                             href="{{$header->link}}">{{$header->title}}</a>
                                 @endforeach
-                                <li class="dropdown"><a href="#">Language</a>
+                                <li class="dropdown"><a href="#">{{$chosen_lang}}</a>
                                     <ul>
                                         @foreach($languages as $language)
                                             <li>
-                                                <a href={{$language->selected?"#":"changeLanguage/" . $language->lang_id }}>{{$language->name_of_language}}</a>
+                                                <a href={{route("language", $language->lang_id) }}>{{$language->name_of_language}}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -80,16 +80,20 @@
                 @foreach($headers as $header)
                     <li class=@if(Request::is($header->link))"current"@endif><a
                             href="{{$header->link}}">{{$header->title}} </a>
-                @endforeach
-                <li class="dropdown"><a href="#">Language</a>
-                    <ul>
-                        @foreach($languages as $language)
-                            <li>
-                                <a href={{$language->selected?"#":"changeLanguage/" . $language->lang_id }}>{{$language->name_of_language}}</a>
-                            </li>
                         @endforeach
-                    </ul>
-                </li>
+
+                    <li class="dropdown"><a href="#">{{$chosen_lang}}</a>
+
+                        <ul>
+                            @foreach($languages as $language)
+                                <li>
+                                    <a href={{route("language", $language->lang_id)}}>{{$language->name_of_language}}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                    </li>
+
             </ul>
         </div><!-- /.Side-menu -->
 

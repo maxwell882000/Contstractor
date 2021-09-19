@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Common;
 
+use App\Models\Common\BannerForThreeSection;
 use Illuminate\View\Component;
 
 class BannerModel
@@ -25,9 +26,11 @@ class Banner extends Component
      */
 
     public $banner;
-    public function __construct()
+
+    public function __construct($type)
     {
-        $this->banner = new BannerModel("images_admin/background/bg-page-title-1.jpg","Shop");
+        $banner = BannerForThreeSection::where("type","=",$type)->first();
+        $this->banner = new BannerModel($banner->image->image, $banner->title);
     }
 
     /**

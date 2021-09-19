@@ -4,15 +4,9 @@ namespace App\Http\Controllers\ExtenededController;
 
 use App\Http\Controllers\Controller;
 use App\Http\RequestCustom;
-use App\Models\Common\Buttons;
-use App\Models\Common\Images;
-use App\Models\Home\MainBanner;
 use App\Repository\IconRepository;
 use App\Repository\ImageRepository;
 use App\TraitDirectory\CreateAndUpdateButton;
-use App\TraitDirectory\CreateAndUpdateImage;
-use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\This;
 
 class ControllerExtendedInput extends Controller
 {
@@ -25,14 +19,16 @@ class ControllerExtendedInput extends Controller
     public $model;
     public $nameInBlade;
     public $pathToBlade;
-    public $pathStoreImages;
+    public $pathStoreImages = "images_store/all";
+    public $offValidation = false;
     public $imageRepository;
     public $iconRepository;
 
-    public function __construct(ImageRepository $imageRepository, IconRepository $iconRepository)
+
+    public function __construct()
     {
-        $this->imageRepository = $imageRepository;
-        $this->iconRepository = $iconRepository;
+        $this->imageRepository = new ImageRepository($this->pathStoreImages);
+        $this->iconRepository = new IconRepository($this->pathStoreImages);
     }
 
     public function modelShow()
@@ -46,27 +42,44 @@ class ControllerExtendedInput extends Controller
     public function modelCreate($request)
     {
 
+        $this->validation($request);
         $object = $this->model::create($request->all());
         $this->iconRepository->createImagable($request, $this->model, $object->id, $this->pathStoreImages);
         $this->imageRepository->createImagable($request, $this->model, $object->id, $this->pathStoreImages);
-
         $this->createButton($request, $this->model, $object->id);
+
         return $object;
     }
 
     public function modelUpdate($request, $id)
     {
+        $this->validation($request);
         $model = $this->model::find($id);
         $model->update($request->all());
         $this->imageRepository->updateImagable($request, $model->image, $this->pathStoreImages);
         $this->iconRepository->updateImagable($request, $model->icon, $this->pathStoreImages);
         $this->updateButton($request);
+        return $model;
+    }
+
+    public function validation($request)
+    {
+
+        if (!$this->offValidation) {
+            $fillable = (new $this->model)->getFillable();
+            $validation = [];
+            foreach ($fillable as $item) {
+                $validation[$item] = "required";
+            }
+            $request->validate($validation);
+        }
     }
 
     public function modelInput(RequestCustom $request)
     {
         $id = 0;
-        if ($request->id == null) {
+
+        if ($request->id == null || $request->id == "0") {
             $object = $this->modelCreate($request);
             $id = $object->id;
         } else {

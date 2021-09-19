@@ -38,20 +38,11 @@
         </div>
 
         <!-- Styled Pagination -->
-        <div class="styled-pagination text-center">
-            <ul class="filter-btns">
-                @foreach($images as $number)
-                    <li><a href="#" class="active">{{$loop->iteration}}</a></li>
-                @endforeach
-            </ul>
-        </div>
+        @include("helper.pagination",["paginate"=>$paginate])
     </div>
 </section>
 <script src="js/jquery.js"></script>
 <script>
 
 
-    $(".filter-tabs li").click(function () {
-        console.log(this);
-    });
 </script>

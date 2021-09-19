@@ -27,10 +27,10 @@ class CreateAboutCompanyDescriptionsTable extends Migration
             $table->string("footer^ru");
             $table->string("footer^uz");
             $table->string("footer^en");
-            $table->string("key_word^ru");
+            $table->string("key_word^ru"); /// Figures
             $table->string("key_word^uz");
             $table->string("key_word^en");
-            $table->bigInteger("about_company_title_id");
+            $table->bigInteger("about_company_title_id")->nullable();
 
         });
     }

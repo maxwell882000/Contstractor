@@ -16,7 +16,7 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images_admin', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->string('image')->default("");
             $table->string("image_type");
             $table->bigInteger("image_id");
         });

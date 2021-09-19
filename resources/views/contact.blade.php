@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Warsaw : Organic Fruits &amp; Vegetables HTML Template | Contact Us</title>
+    <title>{{$title}}</title>
     <!-- Stylesheets -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <x-common.style/>
@@ -29,7 +29,7 @@
 
 
     <!--Page Title-->
-    <x-common.banner/>
+    <x-common.banner type="3"/>
 
 
     <!--Contact Section-->
@@ -73,7 +73,7 @@
 <script src="js/script.js"></script>
 
 <!--Google Map APi Key-->
-<script src="http://maps.google.com/maps/api/js?key="></script>
+<script src="http://maps.google.com/maps/api/js?key={{$key}}"></script>
 <script src="js/map-script.js"></script>
 <!--End Google Map APi-->
 

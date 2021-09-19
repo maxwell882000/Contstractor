@@ -30,29 +30,35 @@
                             </div>
                         @endif
                     </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th colspan="2">№</th>
-                                <th colspan="2">Содержимое</th>
-                                <th colspan="2">Действие</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($object->description as $banner)
-                                <tr>
-                                    <td colspan="2">{{$loop->iteration}}</td>
-                                    <td colspan="2">{{$banner["title^ru"]}}</td>
-                                    <td colspan="1"><a href="{{route("admin.home.welcome_home_show", $banner->id)}}"
-                                                       class="btn btn-info btn-rounded">Посмотреть</a></td>
-                                    <td colspan="1"><a href="{{route("admin.home.welcome_delete", $banner->id)}}"
-                                                       class="btn btn-danger btn-rounded">Удалить</a></td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                    @include("admin_panel.helper.form_helper.table",
+                   ["key"=>"title",
+                   "list"=>$object->description,
+                   "route_show"=>"admin.home.welcome_home_show",
+                   "route_delete"=>""
+                   ])
+{{--                    <div class="table-responsive">--}}
+{{--                        <table class="table table-hover">--}}
+{{--                            <thead>--}}
+{{--                            <tr>--}}
+{{--                                <th colspan="2">№</th>--}}
+{{--                                <th colspan="2">Содержимое</th>--}}
+{{--                                <th colspan="2">Действие</th>--}}
+{{--                            </tr>--}}
+{{--                            </thead>--}}
+{{--                            <tbody>--}}
+{{--                            @foreach($object->description as $banner)--}}
+{{--                                <tr>--}}
+{{--                                    <td colspan="2">{{$loop->iteration}}</td>--}}
+{{--                                    <td colspan="2">{{$banner["title^ru"]}}</td>--}}
+{{--                                    <td colspan="1"><a href="{{route(", $banner->id)}}"--}}
+{{--                                                       class="btn btn-info btn-rounded">Посмотреть</a></td>--}}
+{{--                                    <td colspan="1"><a href="{{route(, $banner->id)}}"--}}
+{{--                                                       class="btn btn-danger btn-rounded">Удалить</a></td>--}}
+{{--                                </tr>--}}
+{{--                            @endforeach--}}
+{{--                            </tbody>--}}
+{{--                        </table>--}}
+{{--                    </div>--}}
                 @endif
             </div>
         </div>

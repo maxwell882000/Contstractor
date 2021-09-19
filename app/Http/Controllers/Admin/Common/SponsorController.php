@@ -3,24 +3,25 @@
 namespace App\Http\Controllers\Admin\Common;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExtenededController\ControllerExtendedListInputWithTitle;
+use App\Models\AboutCompany\AboutCompanyDescription;
+use App\Models\AboutCompany\AboutCompanyTitle;
+use App\Models\Common\Sponsor;
+use App\Models\Common\SponsorTitle;
 
-class SponsorController extends Controller
+
+class SponsorController extends ControllerExtendedListInputWithTitle
 {
     private const  PATH = "admin_panel.pages.common.sponsor.";
+    public $nameUrlParent = "admin.common.";
+    public $model = Sponsor::class;
+    public $foreign_key = "sponsor_titles_id";
+    public $pathStoreImages ="images_store/sponsors";
+    public $is_morph = false;
+    public $modelParent = SponsorTitle::class;
+    public $nameInBlade = "sponsor";
+    public $pathToBlade = self::PATH . "sponsors_input";
+    public $nameInBladeList = "company_about_list";
+    public $pathToBladeInList = self::PATH . "sponsors_show";
 
-    public function sponsorShowList()
-    {
-        return view(self::PATH . "sponsors_show");
-    }
-
-    public function sponsorShow()
-    {
-        return view(self::PATH . "sponsors_input");
-    }
-
-    private function sponsorInput()
-    {
-        return redirect()->back();
-    }
 }

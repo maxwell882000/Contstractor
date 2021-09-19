@@ -15,11 +15,12 @@ class CreateInformationTable extends Migration
     {
         Schema::create('information', function (Blueprint $table) {
             $table->id();
-            $table->string("title^ru");
-            $table->string("title^uz");
-            $table->string("title^en");
-            $table->string("icon"); // icon in bootstrap (fa-something)
-            $table->string("data");
+            $table->string("title^ru")->default("");
+            $table->string("title^uz")->default("");
+            $table->string("title^en")->default("");
+            $table->string("icon_data")->default(""); // icon in bootstrap (fa-something)
+            $table->string("action")->nullable()->default(""); // what action will be
+            $table->string("data")->default(""); // some text email or phone or address
             $table->tinyInteger("type");
         });
     }

@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Home;
 
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\ExtenededController\ControllerExtendedListInput;
 use App\Models\Home\HomeBanner;
-use App\Models\Home\MainBanner;
-use Illuminate\Http\Request;
 
 class RestBannersController extends ControllerExtendedListInput
 {

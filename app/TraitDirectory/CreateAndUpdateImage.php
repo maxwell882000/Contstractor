@@ -2,52 +2,54 @@
 
 namespace App\TraitDirectory;
 
-use App\Models\Common\Buttons;
 use App\Models\Common\Images;
 use Illuminate\Support\Facades\Storage;
 
 trait CreateAndUpdateImage
 {
 
-    public function createImage($request, $type, $id, $pathStoreImages)
-    {
+    public $key_word = "";
+    public $pathImages = "";
 
-        $path = $this->uploadFile($request, $pathStoreImages);
-        Images::createNew($path, $type, $id);
+    public function createImage($request, $model)
+    {
+        $attribute = $this->key_word;
+        $path = $this->uploadFile($request, $this->pathImages);
+
+        $model->$attribute = $path;
+        $model->save();
     }
 
-    private function uploadFile($request, $path)
+    protected function uploadFile($request, $path)
     {
-        $name = time() . "." . $request->image->extension();
-        $request->file("image")->move($path, $name);
+        $attribute = $this->key_word;
+        $name = time() . "." . $request->$attribute->extension();
+        $request->file($attribute)->move($path, $name);
         return $path . "/" . $name;
     }
 
-    public function updateImage($request, $model, $pathStoreImages)
+    public function updateImagable($request, $model)
     {
-        if ($model) {
-            $this->deletePath($model);
-            $model->image = $this->uploadFile($request, $pathStoreImages);
-            $model->save();
+        if ($request->hasFile($this->key_word)) {
+            if ($model) {
+                $this->deletePath($model);
+                $model[$this->key_word] = $this->uploadFile($request, $this->pathImages);
+                $model->save();
+            }
         }
     }
 
     public function deletePath($model)
     {
-        Storage::delete($model->image);
-        $model->image = "";
+        try {
+            Storage::delete($model[$this->key_word]);
+        }
+        catch (\Exception $e){
+        }
+
+        $model[$this->key_word] = "";
         $model->save();
     }
 
-    static public function createNew($image, $type, $id)
-    {
-        return Images::create(
-            [
-                "image" => $image,
-                "image_type" => $type,
-                "image_id" => $id
-            ]
-        );
-    }
 
 }

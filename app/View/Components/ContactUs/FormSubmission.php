@@ -2,10 +2,38 @@
 
 namespace App\View\Components\ContactUs;
 
+use App\Models\ContactUs\FormTitle;
+use App\TraitDirectory\LanguageCheckTrade;
 use Illuminate\View\Component;
+
+class Titles
+{
+    use LanguageCheckTrade;
+
+    public $data;
+
+    public function __construct($en, $ru, $uz)
+    {
+        $this->data = [
+            "title^ru" => $ru,
+            "title^uz" => $uz,
+            "title^en" => $en,
+        ];
+    }
+
+    public function __get($name)
+    {
+        if ($this->checkItIsTranslatable($name)) {
+            return $this->data[$this->translate($name)];
+        }
+        return "";
+    }
+}
 
 class FromSubmissionModel
 {
+    use LanguageCheckTrade;
+
     public $firstname;
     public $lastname;
     public $email;
@@ -20,6 +48,8 @@ class FromSubmissionModel
         $this->subject = $subject;
         $this->message = $message;
     }
+
+
 }
 
 class FormSubmission extends Component
@@ -35,9 +65,15 @@ class FormSubmission extends Component
 
     public function __construct()
     {
-        $this->title = "There is a title";
-        $this->button = "Submit now";
-        $this->form = new FromSubmissionModel("First Name", "Last Name", "Email", "Message", "Subject");
+        $title = FormTitle::all()->first();
+        $this->title = $title->title;
+        $this->button = $title->button_name;
+        $name = new Titles("First Name", "Имя", "Ism");
+        $last = new Titles("Last Name", "Фамилия", "Familiya");
+        $email = new Titles("Email", "Электроная почти", "Email");
+        $subject = new Titles("Subject", "Тема", "Mavzu");
+        $message = new Titles("Message", "Сообщение", "Xabar");
+        $this->form = new FromSubmissionModel($name->title, $last->title, $email->title, $message->title, $subject->title);
     }
 
     /**

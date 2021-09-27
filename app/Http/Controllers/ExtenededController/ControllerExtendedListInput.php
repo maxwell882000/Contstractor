@@ -14,7 +14,7 @@ class ControllerExtendedListInput extends ControllerExtendedInput
     {
         $object = $this->model::all();
         $route = $this->getBasePathes();
-        return view($this->pathToBladeInList, [$this->nameInBladeList => $object, "route"=>$route]);
+        return view($this->pathToBladeInList, [$this->nameInBladeList => $object, "route" => $route]);
     }
 
     protected function generateUrl($prefix)
@@ -22,9 +22,23 @@ class ControllerExtendedListInput extends ControllerExtendedInput
         return $this->nameUrlParent . $this->nameInBlade . $prefix;
     }
 
+    public function modelNew(RequestCustom $request, $parent_id = 0)
+    {
+        $this->modelCreate($request);
+        return back();
+    }
+
+    public function modelNewView(RequestCustom $requestCustom, int $parent_id = 0)
+    {
+        $object["path"] = route($this->generateUrl("_create"), strval($parent_id));
+        return view($this->pathToBlade, [$this->nameInBlade => $object]);
+    }
+
+
     public function getBasePathes()
     {
         return [
+            "route_add" => $this->generateUrl("_new_show"),
             "route_show" => $this->generateUrl("_show"),
             "route_delete" => $this->generateUrl("_delete"),
         ];

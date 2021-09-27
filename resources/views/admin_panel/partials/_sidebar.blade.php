@@ -21,7 +21,7 @@
                             Баннеры</a></li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.home.welcome_home_show_list"))1 @else 0 @endif" href="{{route("admin.home.welcome_home_show_list")}}">Приветствие</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.home.comments_list"))1 @else 0 @endif" href="{{route("admin.home.comments_list")}}">Комментарии</a>
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.home.comments_show_list"))1 @else 0 @endif" href="{{route("admin.home.comments_show_list")}}">Комментарии</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.home.desc_before_card_show"))1 @else 0 @endif" href="{{route("admin.home.desc_before_card_show")}}">Описание перед
                             картой</a>
@@ -108,9 +108,9 @@
             </a>
             <div class="collapse" id="icons">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.common_show"))1 @else 0 @endif" href="{{route("admin.common.common_show")}}">Общие</a></li>
+                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.common_show"))1 @else 0 @endif" href="{{route("admin.common.common_show")}}">Титулка и Iframe maps</a></li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.logo_show"))1 @else 0 @endif" href="{{route("admin.common.logo_show")}}">Лого</a></li>
-                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.map_show"))1 @else 0 @endif" href="{{route("admin.common.map_show")}}">Карты</a></li>
+{{--                    <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.map_show"))1 @else 0 @endif" href="{{route("admin.common.map_show")}}">Карты</a></li>--}}
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.styles_show"))1 @else 0 @endif" href="{{route("admin.common.styles_show")}}">Стили</a></li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.sponsor_show_list"))1 @else 0 @endif" href="{{route("admin.common.sponsor_show_list")}}">Спонсоры</a></li>
                     <li class="nav-item"><a class="nav-link" isActive="@if(\Illuminate\Support\Facades\Route::is("admin.common.header_show_list"))1 @else 0 @endif" href="{{route("admin.common.header_show_list")}}">Header</a></li>

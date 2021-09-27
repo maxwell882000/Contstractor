@@ -20,6 +20,8 @@ Route::prefix("/gallery")->name("gallery.")->group(function () {
     $images->showList();
     $images->show();
     $images->input();
+    $images->newCreate();
+    $images->newShow();
     $images->delete();
 
 });

@@ -21,6 +21,8 @@ Route::prefix("/shop_gallery")->name("shop_gallery.")->group(function () {
     $images = new RouteBuilderList(ShopGallery\ProductController::class, "images");
     $images->showList();
     $images->show();
+    $images->newCreate();
+    $images->newShow();
     $images->input();
     $images->delete();
 

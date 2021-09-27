@@ -15,10 +15,13 @@ class ControllerExtendedListInputWithTitle extends ControllerExtendedListInput
 
     public function modelShowList()
     {
+
         $title = $this->modelParent::all()->first();
         $routes = $this->getBasePathes();
+
         return view($this->pathToBladeInList, [$this->nameInBlade => $title, "route" => $routes]);
     }
+
     public function getBasePathes()
     {
         return [
@@ -28,6 +31,7 @@ class ControllerExtendedListInputWithTitle extends ControllerExtendedListInput
             "route_to_add_list" => $this->generateUrl("_new_show"),
         ];
     }
+
     public function modelTitleInput(RequestCustom $requestCustom)
     {
         $tempStoreModel = $this->model;
@@ -38,19 +42,19 @@ class ControllerExtendedListInputWithTitle extends ControllerExtendedListInput
     }
 
 
-    public function modelNewView(RequestCustom $requestCustom, int $parent_id)
+    public function modelNewView(RequestCustom $requestCustom, int $parent_id = 0)
     {
 
         $object["path"] = route($this->generateUrl("_create"), strval($parent_id));
         return view($this->pathToBlade, [$this->nameInBlade => $object]);
     }
 
-    public function modelNew(RequestCustom $request, $parent_id)
+    public function modelNew(RequestCustom $request, $parent_id = 0)
     {
 
         $object = $this->modelCreate($request);
         $this->connectEloquent($object, $parent_id);
-        return redirect()->route($this->generateUrl('_show'), $object->id);
+        return back();
     }
 
     private function connectEloquent($object, $parent_id)

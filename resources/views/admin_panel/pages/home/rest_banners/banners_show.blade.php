@@ -1,24 +1,12 @@
-@extends("admin_panel.main_layout")
+@include("admin_panel.helper.form_enhanced.form_list", [
+    "title"=>"Cписок Баннеров",
 
-@section("container")
+    "key"=>"body",
+    "list"=>$banner_list,
 
-    <div class="col-lg-8 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <div class="row justify-content-between align-center">
-                    <h4 class="card-title align-self-center">Остальные Банеры</h4>
-                    <a href="{{route("admin.home.banner_show", 0)}}"
-                       class="btn btn-info btn-rounded">Создать</a>
-                </div>
-                <br/>
-                @include("admin_panel.helper.form_helper.table",
-                   ["key"=>"body",
-                   "list"=>$banner_list,
-                   "route_show"=>"admin.home.banner_show",
-                   "route_delete"=>"admin.home.banner_delete"
-                   ])
-            </div>
-        </div>
-    </div>
+    "route_show"=>$route["route_show"],
+    "route_delete"=>$route["route_delete"],
+    "route_to_add_list"=>$route["route_add"],
 
-@endsection
+    "max_length_create" =>""
+]);

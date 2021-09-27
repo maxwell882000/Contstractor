@@ -34,11 +34,15 @@ class MapHome extends Component
      */
     public $fluid_section;
     public $map_data;
-
+    public $key;
     public function __construct()
     {
         $near = SectionNearMap::all()->first();
-        $this->fluid_section = new FluidSection($near->title, $near->header, $near->button->name, $near->button->link);
+        if ($near) {
+            $this->fluid_section = new FluidSection($near->title, $near->header, $near->button->name, $near->button->link);
+        } else {
+            $this->fluid_section = new FluidSection("", "", "", "");
+        }
 
         $this->map_data = $this->getMap();
     }

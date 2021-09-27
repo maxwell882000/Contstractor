@@ -42,9 +42,9 @@ class GalleryShow extends Component
         $this->paginate = $images;
         $this->images = collect([]);
         foreach ($images->items() as $image) {
-            $this->images[$image->id] = new GalleryImages($image->id,
+            $this->images[$image->id] = new GalleryImages($image->id ?? "",
                 $this->getCategory($image->category, $titles),
-                $image->image->image
+                $image->image->image ?? ""
             );
         }
 

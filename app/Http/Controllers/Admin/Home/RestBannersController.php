@@ -10,6 +10,7 @@ class RestBannersController extends ControllerExtendedListInput
     private const PATH = "admin_panel.pages.home.rest_banners.";
     public $model = HomeBanner::class;
     public $nameInBlade = "banner";
+    public $nameUrlParent = "admin.home.";
     public $pathToBlade = self::PATH . "banner_input";
     public $nameInBladeList = "banner_list";
     public $pathStoreImages = "images_store/rest_banner";

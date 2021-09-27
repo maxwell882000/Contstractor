@@ -47,7 +47,7 @@ class InformationCompany extends Component
 
     public function getInfo($model)
     {
-        return new InformationCompanyModel($model->title, $model->icon_data, $model->data);
+        return new InformationCompanyModel($model->title ?? "", $model->icon_data ?? "", $model->data ?? "");
     }
 
     /**

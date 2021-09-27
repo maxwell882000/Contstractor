@@ -59,6 +59,7 @@ class Comments extends Component
     }
     public function setComments()
     {
+
         $this->comments = \App\Models\Home\CommentModel::all()->map(function ($item) {
             return new CommentsModel(
                 $item->body,

@@ -9,7 +9,8 @@ class CommentsController extends ControllerExtendedListInput
 {
     private const  PATH = "admin_panel.pages.home.comments.";
     public $model = CommentModel::class;
-    public $nameInBlade = "comment";
+    public $nameUrlParent = "admin.home.";
+    public $nameInBlade = "comments";
     public $pathToBlade = self::PATH . "comments_input";
     public $nameInBladeList = "comment_list";
     public $pathStoreImages = "images_store/comments";

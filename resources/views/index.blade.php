@@ -67,8 +67,13 @@
 <script src="js/script.js"></script>
 
 <!--Google Map APi Key-->
-<script src="http://maps.google.com/maps/api/js?key={{$key}}"></script>
-<script src="js/map-script.js"></script>
+<script>
+    $().ready(function (){
+        $("iframe").addClass("map-canvas");
+    });
+</script>
+{{--<script src="http://maps.google.com/maps/api/js?key={{$key}}"></script>--}}
+{{--<script src="js/map-script.js"></script>--}}
 <!--End Google Map APi-->
 
 </body>

@@ -38,7 +38,7 @@
                 <!--Footer Column-->
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 column">
                     <div class="footer-widget gallery-widget">
-                        <h2>Instagram Feed</h2>
+                        <h2>{{$footer->instagram_feed}}</h2>
                         <div class="clearfix">
                             @foreach($footer->instagram_images as $image)
                                 <figure class="image"><a href="{{$image->image_preview_path}}" class="lightbox-image"
@@ -52,7 +52,7 @@
                 <!--Footer Column-->
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 column padd-left-60">
                     <div class="footer-widget links-widget">
-                        <h2>Featured links</h2>
+                        <h2>{{$footer->featured_links}}</h2>
                         <div class="row clearfix">
                             @foreach($footer->actual_links as $link)
                                 @if($loop->index % 3 == 0)

@@ -66,8 +66,8 @@ class FormSubmission extends Component
     public function __construct()
     {
         $title = FormTitle::all()->first();
-        $this->title = $title->title;
-        $this->button = $title->button_name;
+        $this->title = $title->title ?? "";
+        $this->button = $title->button_name ?? "";
         $name = new Titles("First Name", "Имя", "Ism");
         $last = new Titles("Last Name", "Фамилия", "Familiya");
         $email = new Titles("Email", "Электроная почти", "Email");

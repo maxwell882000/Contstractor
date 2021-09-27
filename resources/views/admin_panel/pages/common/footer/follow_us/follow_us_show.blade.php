@@ -3,15 +3,15 @@
 // This will be send to loop
     "key"=>"name",
     "list"=>$follow->iconHtml ?? "",
-    "route_show"=>"admin.footer.follow_show",
-    "route_delete"=>"admin.footer.follow_delete",
+    "route_show"=>$route["route_show"],
+    "route_delete"=>$route["route_delete"],
 // this for a button to create new items
-    "route_to_add_list"=>"admin.footer.follow_new_show",
+    "route_to_add_list"=>$route["route_to_add_list"],
 // This to create parent object or update it
     "object"=>$follow,
     "show_name"=>"Название",
     "input_name"=>"name",
-    "route_submit_text"=>"admin.footer.follow_show_list_input",
+    "route_submit_text"=>$route["route_submit_text"],
 // this maximum number of items which could be added to the list
     "max_length_create"=>4,
 

@@ -30,7 +30,7 @@ class Banner extends Component
     public function __construct($type)
     {
         $banner = BannerForThreeSection::where("type","=",$type)->first();
-        $this->banner = new BannerModel($banner->image->image, $banner->title);
+        $this->banner = new BannerModel($banner->image->image ?? "", $banner->title ?? "");
     }
 
     /**

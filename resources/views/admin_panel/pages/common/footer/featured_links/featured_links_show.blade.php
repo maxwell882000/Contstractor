@@ -3,10 +3,10 @@
 
     "key"=>"name",
     "list"=>$featured_links->link ?? "",
-    "route_show"=>"admin.footer.featured_links_show",
-    "route_delete"=>"admin.footer.featured_links_delete",
+     "route_show"=>$route["route_show"],
+    "route_delete"=>$route["route_delete"],
 
-    "route_to_add_list"=>"admin.footer.featured_links_new_show",
+    "route_to_add_list"=>$route["route_to_add_list"],
 
     "object"=>$featured_links,
     "show_name"=>"Название",
@@ -14,6 +14,6 @@
 
 
     "max_length_create"=>6,
-    "route_submit_text"=>"admin.footer.featured_links_show_list_input",
+     "route_submit_text"=>$route["route_submit_text"],
 
 ]);

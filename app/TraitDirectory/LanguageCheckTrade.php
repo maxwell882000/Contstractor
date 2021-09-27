@@ -21,7 +21,9 @@ trait LanguageCheckTrade
 
     public function translate($key)
     {
-        return $key . "^" . session("locale");
+        if ($key . "^" . session("locale"))
+            return $key . "^" . session("locale");
+
     }
 
 }

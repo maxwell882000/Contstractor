@@ -49,13 +49,13 @@ class IntroSection extends Component
     public function __construct()
     {
         $title = InfoSectionModel::all()->first();
-        $desc_left = $title->leftDescription();
-        $desc_right = $title->rightDescription();
+        $desc_left = $title->leftDescription() ?? "";
+        $desc_right = $title->rightDescription() ?? "";
         $more_info = [
-            new IntroDescription($desc_left->title,
-                $desc_left->body, $desc_left->button->name, $desc_left->button->link),
-            new IntroDescription($desc_right->title,
-                $desc_right->body, $desc_right->button->name, $desc_right->button->link),
+            new IntroDescription($desc_left->title ?? "",
+                $desc_left->body ?? "", $desc_left->button->name ?? "", $desc_left->button->link ?? ""),
+            new IntroDescription($desc_right->title ?? "",
+                $desc_right->body ?? "", $desc_right->button->name ?? "", $desc_right->button->link ?? ""),
         ];
         $this->information = new IntroSectionModel(
             $title->title,

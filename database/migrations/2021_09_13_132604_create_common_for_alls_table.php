@@ -18,7 +18,7 @@ class CreateCommonForAllsTable extends Migration
             $table->string("title^ru");
             $table->string("title^en");
             $table->string("title^uz");
-            $table->string("google_api_key", 120);
+            $table->string("google_api_key", 500);
         });
 
     }

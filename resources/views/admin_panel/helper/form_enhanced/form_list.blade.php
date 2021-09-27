@@ -8,7 +8,7 @@
                 <div class="row justify-content-between align-center">
                     <h4 class="card-title align-self-center">{{$title}}</h4>
                     @if($route_to_add_list)
-                        <a href="{{route($route_to_add_list , 0)}}"
+                        <a href="{{route($route_to_add_list, 0)}}"
                            class="btn btn-info btn-rounded">Создать</a>
                     @endif
                 </div>

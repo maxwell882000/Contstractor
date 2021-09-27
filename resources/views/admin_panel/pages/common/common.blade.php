@@ -8,6 +8,6 @@
     @include("admin_panel.helper.form_helper.line",[
     "input"=>"google_api_key",
     "line"=>$common??"",
-    "show" =>"Api для google maps"])
+    "show" =>"Iframe Google maps"])
 @endsection
 

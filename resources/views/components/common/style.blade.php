@@ -1247,7 +1247,8 @@
         top: 100%;
         height: 64px;
         width: 100%;
-        background: url(../images/background/bottom-circular.png) center top no-repeat;
+        background:url(../images/background/bottom-circular.png) center top no-repeat;
+
     }
 
     .intro-section .inner-part .content-column {
@@ -2650,7 +2651,7 @@
 
     .footer-style-one .footer-bottom {
         position: relative;
-        background: #f8f8f8;
+        background:  rgba({{$main_color[0]}},{{$main_color[1]}},{{$main_color[2]}},{{$main_color[3]}});
         color: #aaaaaa;
         font-size: 14px;
         text-align: center;

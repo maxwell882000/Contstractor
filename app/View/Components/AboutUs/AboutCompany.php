@@ -40,18 +40,21 @@ class AboutCompany extends Component
     public function __construct()
     {
         $title = AboutCompanyTitle::all()->first();
-        $this->title = $title->title;
-        $this->image = $title->image->image;
+        $this->title = $title->title ?? "";
+        $this->image = $title->image->image ?? "";
+        if($title)
         $this->about_company = $title->description->map(function ($item){
             return  new AboutCompanyDescription(
-                $item->title,
-                $item->header,
-                $item->body,
-                $item->footer,
-                $item->id,
-                $item->key_word
+                $item->title ?? "",
+                $item->header ?? "",
+                $item->body ?? "",
+                $item->footer ?? "",
+                $item->id ?? "",
+                $item->key_word ?? ""
             );
-        });
+        }) ?? "";
+        else
+            $this->about_company = collect([]);
 
     }
 

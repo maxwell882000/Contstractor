@@ -44,9 +44,9 @@ class Sponsors extends Component
         $title = SponsorTitle::all()->first();
         $sponsors = Sponsor::all()->map(function ($item) {
             return new SponsorsModel($item->image->image, $item->link);
-        });
+        }) ?? [];
 
-        $this->partners = new Partners($title->title, $sponsors);
+        $this->partners = new Partners($title->title ?? "", $sponsors ??"");
     }
 
     /**

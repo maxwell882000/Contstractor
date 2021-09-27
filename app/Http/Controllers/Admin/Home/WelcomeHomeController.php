@@ -14,7 +14,8 @@ class WelcomeHomeController extends ControllerExtendedListInputWithTitle
 {
     private const PATH = "admin_panel.pages.home.welcome_home.";
     public $model = InfoSectionDescriptionModel::class;
-    public $nameInBlade = "object";
+    public $nameInBlade = "welcome_home";
+    public $nameUrlParent = "admin.home.";
     public $pathToBlade = self::PATH . "welcome_home_input";
     public $nameInBladeList = "object_list";
     public $pathStoreImages = "images_store/welcome";
@@ -23,28 +24,4 @@ class WelcomeHomeController extends ControllerExtendedListInputWithTitle
 
 
 
-
-    public function modelShowExisting(RequestCustom $requestCustom, int $id)
-    {
-
-        $desc_model = InfoSectionModel::all()->first();
-        if ($desc_model->count() < 2 && $id == 0 && !($requestCustom->new_added)) {
-            $new_model = InfoSectionDescriptionModel::create();
-            $new_model->info()->associate($desc_model);
-            $new_model->save();
-            Buttons::create(
-                [
-                    "button_type" => $this->model,
-                    "button_id" => $new_model->id
-                ]
-            );
-            $id = $new_model->id;
-        } else if ($desc_model->count() == 2 && $id == 0 && !($requestCustom->new_added)) {
-            return back();
-        }
-        if ($requestCustom->new_added) {
-            $id = $requestCustom->new_added;
-        }
-        return parent::modelShowExisting($requestCustom, $id);
-    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\InterfaceToFron;
 
+use App\Models\Common\CommonForAll;
 use App\Models\Common\Footer\FollowUs;
 use App\Models\Common\GoogleMapConf;
 
@@ -68,36 +69,42 @@ trait InterfaceToFront
 {
     public function getSocialLinks()
     {
-        return FollowUs::all()->first()->iconHtml->map(function ($item) {
-            return new SocialLinks($item->name, $item->link);
-        });
+        if (FollowUs::all()->first()) {
+            return FollowUs::all()->first()->iconHtml->map(function ($item) {
+                return new SocialLinks($item->name, $item->link);
+            });
+        }
+        return collect([]);
     }
 
     public function getLogo()
     {
         $logo = \App\Models\Common\Logo::all()->first();
-        return new Logo($logo->logo220x80(), $logo->logo150x80());
+        if ($logo)
+            return new Logo($logo->logo220x80(), $logo->logo150x80());
+        return new Logo("", "");
     }
 
     public function getMap()
     {
-        $map = GoogleMapConf::all()->first();
-        return new MapModel(
-            $map->title,
-            $map->body,
-            $map->hue_color,
-            $map->lang,
-            $map->lat,
-            $map->roadmap,
-            $map->zoom
-        );
+//        $map = GoogleMapConf::all()->first();
+//        return new MapModel(
+//            $map->title,
+//            $map->body,
+//            $map->hue_color,
+//            $map->lang ?? "",
+//            $map->lat ?? "",
+//            $map->roadmap,
+//            $map->zoom
+//        );
+        return CommonForAll::all()->first()->key ?? "";
     }
 
     public function getCategory($categories, &$array = [])
     {
 
         return $categories->map(function ($cat) use (&$array) {
-            $item = new ItemCategory($cat->name);
+            $item = new ItemCategory($cat->name ?? "");
             $array[$cat->id] = $item;
             return $item;
         });

@@ -75,9 +75,10 @@ class ControllerExtendedInput extends Controller
         }
     }
 
+
+
     public function modelInput(RequestCustom $request)
     {
-        $id = 0;
 
         if ($request->id == null || $request->id == "0") {
             $object = $this->modelCreate($request);
@@ -86,9 +87,7 @@ class ControllerExtendedInput extends Controller
             $this->modelUpdate($request, $request->id);
             $id = $request->id;
         }
-        $url = url()->previous();
-        $query = !$request->new_added ? "?" . http_build_query(["new_added" => $id]) : "";
-        return redirect()->to($url . $query);
+        return back();
     }
 
 

@@ -24,6 +24,15 @@
                 <h4 class="card-title align-self-center">{{$title}}</h4>
                 <br/>
                 <form method="post" action="{{route($route_submit_text)}}" enctype="multipart/form-data">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     @csrf
                     <input style="display: none" type="number" name="id" value="{{$object->id ?? ""}}"/>
                     <div class=" col-lg-12 row justify-content-between align-center">

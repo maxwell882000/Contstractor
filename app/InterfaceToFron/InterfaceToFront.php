@@ -69,8 +69,8 @@ trait InterfaceToFront
 {
     public function getSocialLinks()
     {
-        if (FollowUs::all()->first()) {
-            return FollowUs::all()->first()->iconHtml->map(function ($item) {
+        if ($follow = FollowUs::all()->first()) {
+            return $follow->iconHtml->map(function ($item) {
                 return new SocialLinks($item->name, $item->link);
             });
         }
@@ -87,17 +87,11 @@ trait InterfaceToFront
 
     public function getMap()
     {
-//        $map = GoogleMapConf::all()->first();
-//        return new MapModel(
-//            $map->title,
-//            $map->body,
-//            $map->hue_color,
-//            $map->lang ?? "",
-//            $map->lat ?? "",
-//            $map->roadmap,
-//            $map->zoom
-//        );
-        return CommonForAll::all()->first()->key ?? "";
+
+        if ($key = CommonForAll::all()->first())
+            return $key->key;
+
+        return "";
     }
 
     public function getCategory($categories, &$array = [])

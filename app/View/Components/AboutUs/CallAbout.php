@@ -35,11 +35,17 @@ class CallAbout extends Component
     public function __construct()
     {
         $hotline = Hotline::all()->first();
-        $this->calls = new CallAboutModel($hotline->mini_header ?? "",
-            $hotline->phone ?? "",
-            $hotline->body ?? "",
-            $hotline->imageLeft->icon ?? "",
-            $hotline->imageRight->image ?? "");
+        if ($hotline) {
+            $this->calls = new CallAboutModel($hotline->mini_header,
+                $hotline->phone,
+                $hotline->body,
+                $hotline->imageLeft->icon,
+                $hotline->imageRight->image);
+        } else {
+            $this->calls = new CallAboutModel("", "",
+                '',
+                "", "");
+        }
     }
 
     /**

@@ -32,11 +32,12 @@ class AboutTeam extends Component
     public function __construct()
     {
         $title = PersonalsTitle::all()->first();
-        $this->title = $title->title ?? "";
-        if($title)
-        $this->personals = $title->personal->map(function ($item) {
+        if($title) {
+            $this->title = $title->title;
+            $this->personals = $title->personal->map(function ($item) {
                 return new Personal($item->image->image, $item->name, $item->body);
             })->all();
+        }
         else
             $this->personals =  [
                 new Personal("images/resource/team-image-1.jpg", "Peter Parker 1", "Meet the maker of our bread – our fabulous baker boy alberto Trombin. He creates superb bread in their Melbourne-based bread-quarters."),

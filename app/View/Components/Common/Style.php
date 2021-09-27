@@ -30,7 +30,6 @@ class Style extends Component
         $this->intro_section_before_color_home = $common->intro_section();
         $this->main_color = $common->main();
         $this->emphasize_color = $common->emphasize();
-
         $this->title_color = $common->title();
         $this->secondary_color = $common->secondary();
         $this->common_icon = $common->common_icon;

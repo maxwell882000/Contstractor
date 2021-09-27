@@ -42,11 +42,14 @@ class Sponsors extends Component
     public function __construct()
     {
         $title = SponsorTitle::all()->first();
-        $sponsors = Sponsor::all()->map(function ($item) {
-            return new SponsorsModel($item->image->image, $item->link);
-        }) ?? [];
 
-        $this->partners = new Partners($title->title ?? "", $sponsors ??"");
+        $sponsors = Sponsor::all()->map(function ($item) {
+                return new SponsorsModel($item->image->image, $item->link);
+            }) ?? [];
+        if ($title)
+            $this->partners = new Partners($title->title, $sponsors);
+        else
+            $this->partners = new Partners("", $sponsors);
     }
 
     /**

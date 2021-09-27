@@ -58,13 +58,7 @@ class Header extends Component
     public function __construct()
     {
 
-//        $this->social_links = collect(
-//            [
-//                new SocialLinks("facebook", ""),
-//                new SocialLinks("twitter", ""),
-//                new SocialLinks("google-plus", ""),
-//                new SocialLinks("instagram", ""),
-//            ]);
+
         $this->setSocialLinks();
         $this->setLogo();
         $this->setHeader();

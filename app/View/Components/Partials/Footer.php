@@ -117,27 +117,32 @@ class Footer extends Component
         $social_links = $this->getSocialLinks();
         $image_instagram = $this->getImageInstagram();
         $links = $this->getFeaturedLinks();
+        $left = LeftMostText::all()->first();
+        $keep = KeepInTouch::all()->first();
+        $instagram = InstagramFeed::all()->first();
+        $featured_links = FeaturedLinks::all()->first();
+        $follow  = FollowUs::all()->first();
         $this->footer = new FooterModel(
-            LeftMostText::all()->first()->body ?? "",
-            KeepInTouch::all()->first()->name ?? "",
+            $left ? $left->body : "",
+            $keep ? $keep->name : "",
             $information_model,
-            InstagramFeed::all()->first()->name ?? "",
+            $instagram ? $instagram->name : "",
             $image_instagram,
-            FeaturedLinks::all()->first()->name ?? "",
+            $featured_links ? $featured_links->name : "",
             $links,
-            FollowUs::all()->first()->name ?? "",
+            $follow? $follow->name : "",
             $social_links
         );
     }
 
     private function getFeaturedLinks()
     {
-        if (FeaturedLinks::all()->first()) {
-            return FeaturedLinks::all()->first()->link->map(function ($item) {
+        if ($feature =FeaturedLinks::all()->first()) {
+            return $feature->link->map(function ($item) {
                 return new Links($item->name, $item->link);
             });
         }
-     return  collect([]);
+        return collect([]);
     }
 
     private function getInformationModel()

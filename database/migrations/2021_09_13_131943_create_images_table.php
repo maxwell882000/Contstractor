@@ -19,6 +19,7 @@ class CreateImagesTable extends Migration
             $table->string('image')->default("");
             $table->string("image_type");
             $table->bigInteger("image_id");
+            $table->index(["image_type", "image_id"]);
         });
 
 //        DB::statement("ALTER TABLE images_admin ADD image MEDIUMBLOB");

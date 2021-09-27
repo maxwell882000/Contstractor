@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Common;
 
+use App\Models\Home\InfoSectionModel;
 use Illuminate\View\Component;
 
 class Style extends Component
@@ -21,7 +22,7 @@ class Style extends Component
     public $background_image;
     public $intro_section_before_color_home;
     public $scroll_up_color; //black
-
+    public $home_image_down;
     public function __construct()
     {
         $common = \App\Models\Common\Style::all()->first();
@@ -34,6 +35,9 @@ class Style extends Component
         $this->secondary_color = $common->secondary();
         $this->common_icon = $common->common_icon;
         $this->preloader_GIF = $common->preloaderGif();
+        if($section = InfoSectionModel::all()->first())
+            $this->home_image_down = $section->image_down;
+
         $this->background_image = $common->backgroundImage();
 //        $this->scroll_up_color = [
 //            0 => 10,

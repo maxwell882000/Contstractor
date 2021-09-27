@@ -1247,7 +1247,7 @@
         top: 100%;
         height: 64px;
         width: 100%;
-        background:url(../images/background/bottom-circular.png) center top no-repeat;
+        background:url({{$home_image_down}}) center top no-repeat;
 
     }
 

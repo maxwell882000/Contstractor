@@ -27,14 +27,9 @@ class InfoSectionModel extends ModelWithTranslate
         return $model;
     }
 
-    public function rightImage()
+    public function getImageDownAttribute()
     {
-        return $this->image;
-    }
-
-    public function leftImage()
-    {
-        return $this->icon;
+        return $this->image->image;
     }
 
     public function image()
@@ -42,11 +37,12 @@ class InfoSectionModel extends ModelWithTranslate
         return $this->morphOne(Images::class, "image");
     }
 
-    public function icon()
-    {
-        return $this->morphOne(Icon::class, "icon");
+    public function getListDescAttribute(){
+        return $this->description->map(function ($item, $key){
+            $item["desc"] = $key == 0 ? "Левая сторана" : "Правая сторана";
+            return $item;
+        });
     }
-
     public function leftDescription()
     {
         return $this->description()->first();

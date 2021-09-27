@@ -22,6 +22,8 @@ class CreateInformationTable extends Migration
             $table->string("action")->nullable()->default(""); // what action will be
             $table->string("data")->default(""); // some text email or phone or address
             $table->tinyInteger("type");
+
+            $table->index("type");
         });
     }
 

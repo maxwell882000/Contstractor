@@ -19,6 +19,8 @@ class CreateIconsTable extends Migration
             $table->string("icon")->default("");
             $table->string("icon_type");
             $table->bigInteger("icon_id");
+
+            $table->index(["icon_type", "icon_id"]);
         });
 
     }

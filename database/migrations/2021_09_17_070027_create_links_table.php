@@ -17,6 +17,8 @@ class CreateLinksTable extends Migration
             $table->id();
             $table->string("link_type")->nullable($value = true);
             $table->bigInteger("link_id")->nullable($value = true);
+
+            $table->index(["link_type","link_id"]);
         });
     }
 

@@ -19,6 +19,8 @@ class CreateIconHtmlsTable extends Migration
             $table->string("link");
             $table->string("icon_html_type")->nullable($value = true);
             $table->bigInteger("icon_html_id")->nullable($value = true);
+
+            $table->index(["icon_html_type","icon_html_id"]);
         });
     }
 

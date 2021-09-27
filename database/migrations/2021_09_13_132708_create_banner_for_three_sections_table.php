@@ -19,6 +19,7 @@ class CreateBannerForThreeSectionsTable extends Migration
             $table->string("title^uz");
             $table->string("title^en");
             $table->tinyInteger("type");
+            $table->index("type");
         });
     }
 

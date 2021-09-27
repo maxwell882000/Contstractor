@@ -8,5 +8,6 @@
     @include("admin_panel.helper.form_helper.title", ["title"=>$welcome_home])
     @include("admin_panel.helper.form_helper.body", ["body"=>$welcome_home])
     @include("admin_panel.helper.form_helper.multi_button", ["buttons"=> [$welcome_home->button ?? []], "length" => 1])
+    @include("admin_panel.helper.form_helper.image", ["image"=>$welcome_home->image ?? []])
 @endsection
 

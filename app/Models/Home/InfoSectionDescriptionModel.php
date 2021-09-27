@@ -3,6 +3,7 @@
 namespace App\Models\Home;
 
 use App\Models\Common\Buttons;
+use App\Models\Common\Images;
 use App\Models\CustomModel\ModelWithTranslate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +29,11 @@ class InfoSectionDescriptionModel extends ModelWithTranslate
     {
         return $this->morphOne(Buttons::class, "button");
     }
+
+    public function image(){
+        return $this->morphOne(Images::class, "image");
+    }
+
     public function info(){
         return $this->belongsTo(InfoSectionModel::class,"info_section_model_id");
     }

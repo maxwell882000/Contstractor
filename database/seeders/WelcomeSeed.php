@@ -19,18 +19,15 @@ class WelcomeSeed extends Seeder
     public function run()
     {
         $info = InfoSectionModel::create();
+
         Images::create(
             [
                 "image_type"=>InfoSectionModel::class,
-                "image_id"=>$info->id
+                "image_id"=>$info->id,
+                "image"=> "../images/background/bottom-circular.png"
             ]
         );
-        Icon::create(
-            [
-                "icon_type"=>InfoSectionModel::class,
-                "icon_id"=>$info->id
-            ]
-        );
+
         $this->create($info);
         $this->create($info);
     }
@@ -42,5 +39,12 @@ class WelcomeSeed extends Seeder
             "button_type" => InfoSectionDescriptionModel::class,
             "button_id" => $desc->id
         ]);
+        Images::create(
+            [
+                "image_type"=>InfoSectionDescriptionModel::class,
+                "image_id"=> $desc->id
+            ]
+        );
     }
+
 }

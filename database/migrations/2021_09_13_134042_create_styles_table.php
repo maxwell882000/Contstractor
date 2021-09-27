@@ -23,6 +23,7 @@ class CreateStylesTable extends Migration
             $table->string("common_icon")->default("../images/icons/icon-crops.png");
             $table->string("intro_section_before_color_home")->default("244,238,222,0.94");
             $table->string("scroll_up_color")->default("10,10,10,1");
+
         });
     }
 

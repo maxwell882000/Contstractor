@@ -3,6 +3,7 @@
 namespace App\TraitDirectory;
 
 use App\Models\Common\Images;
+use Illuminate\Cache\FileStore;
 use Illuminate\Support\Facades\Storage;
 
 trait CreateAndUpdateImage
@@ -22,6 +23,7 @@ trait CreateAndUpdateImage
 
     protected function uploadFile($request, $path)
     {
+
         $attribute = $this->key_word;
         $name = time() . "." . $request->$attribute->extension();
         $request->file($attribute)->move($path, $name);
